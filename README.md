@@ -1,6 +1,6 @@
 ## Turing OverFlow
 
-### An application intended for the Turing community to server as it's internal stack overflow.
+### An application intended for the Turing community to serve as it's internal stack overflow.
 
 #### Team Members
 
