@@ -8,7 +8,7 @@ const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
 router.get('/questions', (request, response) => {
-  database('questions').select()
+  database('questions').select().orderBy('created_at', 'desc')
     .then((questions) => {
       const convertedQuestions = utils.alterTimeStamp(questions);
       response.status(200).json(convertedQuestions);
