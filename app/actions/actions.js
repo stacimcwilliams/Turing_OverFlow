@@ -17,3 +17,11 @@ export const fetchAllQuestions = () => {
     dispatch(fetchAllQuestionsAction(questions));
   });
 };
+
+export const fetchQuestionTags = (id) => {
+  return () =>
+  fetch(`/api/v1/questions/${id}/tags`)
+  .then(response =>
+      response.json(),
+  );
+};
