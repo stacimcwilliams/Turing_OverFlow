@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const MainQuestion = ({ id, title, user_name, answers, views, votes, created_at }) => {
   return (
-    <div>
+    <div className="question-wrapper">
       <div className="count-wrapper">
         <div>votes: { votes }</div>
         <div>answers: { answers }</div>
