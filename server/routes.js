@@ -55,14 +55,14 @@ router.get('/questions/:id/tags', (request, response) => {
 
 //post a question
 router.post('/questions', (request, response) => {
-  const validQuestion = ['title', 'question', 'user_name'].every(prop => request.body.hasOwnProperty(prop));
+  const validQuestion = ['title', 'question', 'user_name'].every(param => request.body[param]);
   const question = request.body;
 
   if (!validQuestion) {
-    return response.status(422).send({ error: 'You are missing data ' });
+    return response.status(422).send({ error: 'You are missing content from post ' });
   }
 
-  database('questions').insert(question, ['id', 'title', 'question', 'user_name'])
+  database('questions').insert(question, ['id', 'title', 'question', 'user_name', 'created_at'])
   .then((newQuestion) => {
     response.status(201).json(newQuestion[0]);
   })
