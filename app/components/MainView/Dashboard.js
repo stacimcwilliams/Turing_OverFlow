@@ -9,13 +9,20 @@ export default class Dashboard extends Component {
     console.log(this.props);
   }
 
+  renderQuestions() {
+    return this.props.questions.map((question, i) => {
+      return (
+        <MainQuestion key={question.id} {...question} />
+      );
+    });
+  }
+
   render() {
     return (
       <section>
         <h2>Dashboard</h2>
-        <MainQuestion questionID="1" />
+        {this.renderQuestions()}
       </section>
-
     );
   }
 }
