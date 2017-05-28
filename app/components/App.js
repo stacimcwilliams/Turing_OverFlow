@@ -8,8 +8,8 @@ import QuestionDetail from './QuestionView/QuestionDetail'
 const App = () => {
   return (
     <div>
-      <h1>Turing OverFlow</h1>
       <NavBar />
+      <h1>Turing OverFlow</h1>
       <Route exact path='/' component={DashboardContainer} />
       <Route exact path='/question' component={QuestionDetail}/>
     </div>

@@ -1,18 +1,17 @@
-.home {
-  border: none;
-  height: 80px;
-  
+.home-link {
+  margin-left: 4px;
   img {
     width: auto;
-    height: 80px;
+    height: 40px;
   }
 }
 
 .nav-bar {
-  width: 90%;
-  height: 80px;
-  border: 1px solid magenta;
-  margin: 0 auto;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background: #3c4040;
+  border-bottom: 4px solid #05c2d1;
 }
 

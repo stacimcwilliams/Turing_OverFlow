@@ -17,8 +17,8 @@ export default class Search extends Component {
   render () {
     return (
       <div className="search-container">
-        <input className="search-input"/>
-        <Button className="search" handleClick={this.searchDB} name={'Search'}/>
+        <input className="search-input" placeholder="Search..."/>
+        <Button className="search--btn" handleClick={ this.searchDB } />
       </div>
     )
   }
