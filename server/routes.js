@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const utils = require('./utils.js');
 
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../knexfile')[environment];
@@ -9,7 +10,8 @@ const database = require('knex')(configuration);
 router.get('/questions', (request, response) => {
   database('questions').select()
     .then((questions) => {
-      response.status(200).json(questions);
+      const convertedQuestions = utils.alterTimeStamp(questions);
+      response.status(200).json(convertedQuestions);
     })
     .catch((error) => {
       response.status(500).send({ error });
