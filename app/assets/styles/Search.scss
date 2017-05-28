@@ -13,15 +13,15 @@
     width: 25px;
     padding: 0;
     border: none;
-    background: #05c2d1;
-    color: #FFF;
+    background: $turingGreen;
+    color: $white;
     cursor: pointer;
     &:after {
       display: inline-block;
       content: "";
       width: 15px;
       height: 15px;
-      background: url(../images/magnifier.svg) no-repeat;
+      background: $magnifierGlass;
       background-size: 15px 15px;
     }
   }
