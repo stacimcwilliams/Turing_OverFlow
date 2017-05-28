@@ -13,10 +13,22 @@
     }
   }
   h4, h5 {
-    text-align: right;
+    float: right;
+    display: inline-block;
+    margin: 10px 0px 0 10px;
   }
   .title-link {
     display: block;
-    margin: 5px 0;
+    margin: 5px 0 10px 0;
+  }
+  .question-tag {
+    background: transparentize($turingGreen, .7);
+    margin: 5px 5px 5px 0;
+    color: black;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      background: $turingGreen;
+    }
   }
 }
