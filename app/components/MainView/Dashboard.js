@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import MainQuestion from './MainQuestion';
+
 export default class Dashboard extends Component {
 
   componentWillMount() {
@@ -9,7 +11,11 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <h2>Dashboard</h2>
+      <section>
+        <h2>Dashboard</h2>
+        <MainQuestion questionID="1" />
+      </section>
+
     );
   }
 }
