@@ -9,7 +9,6 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <h1>Turing OverFlow</h1>
       <Route exact path='/' component={DashboardContainer} />
       <Route exact path='/question' component={QuestionDetail}/>
     </div>

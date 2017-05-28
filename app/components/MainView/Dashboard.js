@@ -19,8 +19,8 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <section>
-        <h2>Dashboard</h2>
+      <section className="dashboard">
+        <h2 className="dashboard-header">Dashboard</h2>
         {this.renderQuestions()}
       </section>
     );
