@@ -9,7 +9,7 @@
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "test": "jest",
     "lint": "eslint .",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "repository": {
     "type": "git",
