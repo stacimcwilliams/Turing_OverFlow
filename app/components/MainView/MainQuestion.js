@@ -12,7 +12,7 @@ const MainQuestion = ({ id, title, user_name, answers, views, votes, created_at 
         <div>views: { views }</div>
       </div>
       <div className="summary-wrapper">
-        <Link to={'/question'}> {title} </Link>
+        <Link className="title-link" to={'/question'}>{ title }</Link>
         <h4>{ user_name }</h4>
         <h5>{ created_at }</h5>
       </div>

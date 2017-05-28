@@ -1,4 +1,28 @@
 .search-container {
-  display: inline-block;
-  height: 80px;
+  display: flex;
+  height: 25px;
+  margin-right: 10px;
+  .search-input {
+    height: inherit;
+    padding: 0;
+    border: none;
+    text-indent: 5px;
+  }
+  .search--btn {
+    height: inherit;
+    width: 25px;
+    padding: 0;
+    border: none;
+    background: $turingGreen;
+    color: $white;
+    cursor: pointer;
+    &:after {
+      display: inline-block;
+      content: "";
+      width: 15px;
+      height: 15px;
+      background: $magnifierGlass;
+      background-size: 15px 15px;
+    }
+  }
 }

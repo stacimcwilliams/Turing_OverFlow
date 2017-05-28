@@ -1,18 +1,25 @@
-.home {
-  border: none;
-  height: 80px;
-  
+.home-link {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  color: $white;
+  text-decoration: none;
   img {
     width: auto;
-    height: 80px;
+    height: 40px;
+  }
+  &:after {
+    content: "Overflow";
+    margin-left: 4px;
   }
 }
 
 .nav-bar {
-  width: 90%;
-  height: 80px;
-  border: 1px solid magenta;
-  margin: 0 auto;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background: $darkGrey;
+  border-bottom: 4px solid $turingGreen;
 }
 

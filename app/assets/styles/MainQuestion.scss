@@ -1,3 +1,22 @@
 .question-wrapper{
-  text-align: center;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 8px;
+  border: 1px solid $turingGreen;
+  .count-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    div {
+      text-align: center;
+    }
+  }
+  h4, h5 {
+    text-align: right;
+  }
+  .title-link {
+    display: block;
+    margin: 5px 0;
+  }
 }
