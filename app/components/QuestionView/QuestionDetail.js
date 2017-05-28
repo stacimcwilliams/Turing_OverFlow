@@ -1,8 +1,8 @@
 import React from 'react';
 
-const QuestionDetail = ({ questionID }) => {
+const QuestionDetail = ({ question  }) => {
   return (
-    <h1> Here is that great question {questionID} </h1>
+    <h1>  {question} </h1>
   )
 }
 
