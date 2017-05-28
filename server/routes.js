@@ -36,4 +36,19 @@ router.get('/tags', (request, response) => {
     });
 });
 
+router.get('/questions/:id/tags', (request, response) => {
+  const { id } = request.params;
+  database('tags').select().where('question_id', id)
+    .then((tags) => {
+      if (!tags.length) {
+        response.status(404).send({ error: 'No tags exist for this question' });
+      } else {
+        response.status(200).json(tags);
+      }
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
+});
+
 module.exports = router;
