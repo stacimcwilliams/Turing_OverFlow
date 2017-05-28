@@ -1,12 +1,15 @@
 import React from 'react';
-import Button from './Button'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import Search from './Search'
 
 const NavBar = () => {
-
   return (
     <div className={ `nav-bar` }>
-      <Link to={ '/' } className='btn home' />
+      <Link to={ '/' } className='home' >
+        <img src="https://d3c5s1hmka2e2b.cloudfront.net/uploads/topic/image/182/Turing---Logo-Black.png" />
+      </Link >
+      <Search />
     </div>
   )
 }
