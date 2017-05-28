@@ -20,22 +20,22 @@ router.get('/questions', (request, response) => {
 
 router.get('/answers', (request, response) => {
   database('answers').select()
-    .then((answers) => {
-      response.status(200).json(answers);
-    })
-    .catch((error) => {
-      response.status(500).send({ error });
-    });
+  .then((answers) => {
+    response.status(200).json(answers);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
 });
 
 router.get('/tags', (request, response) => {
   database('tags').select()
-    .then((tags) => {
-      response.status(200).json(tags);
-    })
-    .catch((error) => {
-      response.status(500).send({ error });
-    });
+  .then((tags) => {
+    response.status(200).json(tags);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
 });
 
 router.get('/questions/:id/tags', (request, response) => {
@@ -51,6 +51,24 @@ router.get('/questions/:id/tags', (request, response) => {
     .catch((error) => {
       response.status(500).send({ error });
     });
+});
+
+//post a question
+router.post('/questions', (request, response) => {
+  const validQuestion = ['title', 'question', 'user_name'].every(prop => request.body.hasOwnProperty(prop));
+  const question = request.body;
+
+  if (!validQuestion) {
+    return response.status(422).send({ error: 'You are missing data ' });
+  }
+
+  database('questions').insert(question, ['id', 'title', 'question', 'user_name'])
+  .then((newQuestion) => {
+    response.status(201).json(newQuestion[0]);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
 });
 
 module.exports = router;
