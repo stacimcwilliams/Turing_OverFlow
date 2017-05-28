@@ -52,9 +52,6 @@
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
-    "webpack-dev-middleware": "^1.10.2",
-    "webpack-dev-server": "^1.16.3",
-    "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -73,6 +70,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-dev-server": "^1.16.3",
+    "webpack-hot-middleware": "^2.18.0"
   }
 }
