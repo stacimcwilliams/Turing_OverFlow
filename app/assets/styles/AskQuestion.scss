@@ -1,0 +1,50 @@
+.ask-question-wrapper {
+  padding: 10px;
+  .ask-question-header {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+  }
+  .submit-question--btn {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+    border: none;
+    background: $turing-green;
+    cursor: pointer;
+  }
+}
+
+.title-wrapper {
+  @include ask-question-input-wrappers;
+  label {
+    @include ask-question-labels;
+  }
+  .title-input {
+    width: 85%;
+    height: inherit;
+    padding: 0;
+    border: $input-border-green;
+    text-indent: 5px;
+  }
+}
+
+.tags-wrapper {
+  @include ask-question-input-wrappers;
+  label {
+    @include ask-question-labels;
+  }
+  .tag-input {
+    width: 75%;
+    height: inherit;
+    padding: 0;
+    border: $input-border-green;
+    text-indent: 5px;
+  }
+  .tag--btn {
+    width: 10%;
+    height: 29px;
+    background: $turing-green;
+    border: $input-border-green;
+    cursor: pointer;
+  }
+}
