@@ -25,3 +25,16 @@ export const fetchQuestionTags = (id) => {
       response.json(),
   );
 };
+
+export const addQuestion = (title, question, name) => {
+  return () =>
+    fetch('/api/v1/questions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, user_name: name, question }),
+    })
+    .then(response =>
+      response.json(),
+    );
+};
+
