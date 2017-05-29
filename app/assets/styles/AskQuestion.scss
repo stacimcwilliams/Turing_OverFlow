@@ -28,6 +28,20 @@
   }
 }
 
+.user-name-wrapper {
+  @include ask-question-input-wrappers;
+  label {
+    @include ask-question-labels;
+  }
+  .user-name-input {
+    width: 85%;
+    height: inherit;
+    padding: 0;
+    border: $input-border-green;
+    text-indent: 5px;
+  }
+}
+
 .tags-wrapper {
   @include ask-question-input-wrappers;
   label {

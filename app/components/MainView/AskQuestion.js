@@ -9,6 +9,7 @@ export default class AskQuestion extends Component {
     super();
     this.state = {
       title: '',
+      name: '',
       question: '',
       tagText: '',
       tags: [],
@@ -40,7 +41,7 @@ export default class AskQuestion extends Component {
   }
 
   render() {
-    const { title, tagText } = this.state;
+    const { title, tagText, name } = this.state;
 
     return (
       <div className="ask-question-wrapper">
@@ -53,6 +54,17 @@ export default class AskQuestion extends Component {
             name="title"
             value={ title }
             minLength="15"
+            maxLength="200"
+            onChange={ e => this.handleInput(e) }
+          />
+        </div>
+        <div className="user-name-wrapper">
+          <label>User</label>
+          <input
+            className="user-name-input"
+            placeholder="Enter your name"
+            name="name"
+            value={ name }
             maxLength="200"
             onChange={ e => this.handleInput(e) }
           />
