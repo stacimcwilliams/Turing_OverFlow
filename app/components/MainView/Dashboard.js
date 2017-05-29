@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+// import moment from 'moment';
 
-import MainQuestion from './MainQuestion';
+import MainQuestionContainer from '../../containers/MainQuestionContainer';
 
 export default class Dashboard extends Component {
 
   componentWillMount() {
     this.props.fetchAllQuestions();
-    console.log(this.props);
   }
 
   renderQuestions() {
-    return this.props.questions.map((question, i) => {
+    return this.props.questions.map((question) => {
       return (
-        <MainQuestion key={question.id} {...question} />
+        <MainQuestionContainer key={ question.id } { ...question } />
       );
     });
   }
@@ -21,7 +21,7 @@ export default class Dashboard extends Component {
     return (
       <section className="dashboard">
         <h2 className="dashboard-header">Dashboard</h2>
-        {this.renderQuestions()}
+        { this.renderQuestions() }
       </section>
     );
   }
