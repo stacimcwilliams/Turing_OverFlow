@@ -40,8 +40,15 @@ export default class AskQuestion extends Component {
     });
   }
 
+  postQuestion(title, question, name) {
+    this.props.addQuestion(title, question, name)
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
   render() {
-    const { title, tagText, name } = this.state;
+    const { title, question, tagText, name } = this.state;
 
     return (
       <div className="ask-question-wrapper">
@@ -90,6 +97,7 @@ export default class AskQuestion extends Component {
         <Button
           className="submit-question--btn"
           name="Submit Question"
+          handleClick={ () => this.postQuestion(title, question, name) }
         />
       </div>
     );

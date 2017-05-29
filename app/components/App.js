@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 
 import NavBar from './NavBar'
 import DashboardContainer from '../containers/DashboardContainer';
-import QuestionDetail from './QuestionView/QuestionDetail'
-import AskQuestion from './MainView/AskQuestion'
+import AskQuestionContainer from '../containers/AskQuestionContainer';
+import QuestionDetail from './QuestionView/QuestionDetail';
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
       <NavBar />
       <Route exact path='/' component={ DashboardContainer } />
       <Route exact path='/question' component={ QuestionDetail }/>
-      <Route exact path='/ask-question' component={ AskQuestion }/>
+      <Route exact path='/ask-question' component={ AskQuestionContainer }/>
     </div>
   );
 };
