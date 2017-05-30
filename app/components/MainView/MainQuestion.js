@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
+
+import TagLink from '../TagLink';
 
 export default class MainQuestion extends Component {
   constructor() {
@@ -18,7 +19,7 @@ export default class MainQuestion extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map(tag => <a key={ tag.id } className="question-tag">{ tag.tag }</a>);
+    return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
   }
 
   render() {
