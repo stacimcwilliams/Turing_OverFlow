@@ -38,3 +38,5 @@ if (!module.parent) {
     console.log(`Server is listening on ${(app.get('port'))}`);
   });
 }
+
+module.exports = app;
