@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 import MainQuestionContainer from '../../containers/MainQuestionContainer';
 
@@ -18,10 +18,12 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    const questions = this.renderQuestions();
     return (
       <section className="dashboard">
         <h2 className="dashboard-header">Dashboard</h2>
-        { this.renderQuestions() }
+        <Link className="add-question-link" to={'/ask-question'}>Ask Question</Link>
+        { questions }
       </section>
     );
   }

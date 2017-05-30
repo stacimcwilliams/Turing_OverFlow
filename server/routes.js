@@ -20,22 +20,22 @@ router.get('/questions', (request, response) => {
 
 router.get('/answers', (request, response) => {
   database('answers').select()
-  .then((answers) => {
-    response.status(200).json(answers);
-  })
-  .catch((error) => {
-    response.status(500).send({ error });
-  });
+    .then((answers) => {
+      response.status(200).json(answers);
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
 });
 
 router.get('/tags', (request, response) => {
   database('tags').select()
-  .then((tags) => {
-    response.status(200).json(tags);
-  })
-  .catch((error) => {
-    response.status(500).send({ error });
-  });
+    .then((tags) => {
+      response.status(200).json(tags);
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
 });
 
 router.get('/questions/:id/tags', (request, response) => {
@@ -53,22 +53,30 @@ router.get('/questions/:id/tags', (request, response) => {
     });
 });
 
-//post a question
+
 router.post('/questions', (request, response) => {
-  const validQuestion = ['title', 'question', 'user_name'].every(param => request.body[param]);
-  const question = request.body;
+  const validQuestion = ['title', 'question', 'user_name', 'tags'].every(param => request.body[param]);
+  const { title, question, user_name, tags } = request.body;
 
   if (!validQuestion) {
     return response.status(422).send({ error: 'You are missing content from post ' });
   }
 
-  database('questions').insert(question, ['id', 'title', 'question', 'user_name', 'created_at'])
-  .then((newQuestion) => {
-    response.status(201).json(newQuestion[0]);
-  })
-  .catch((error) => {
-    response.status(500).send({ error });
-  });
+  database('questions').insert({ title, question, user_name }, ['id'])
+    .then((id) => {
+      tags.forEach((tag) => {
+        database('tags').insert({ tag, question_id: id[0].id })
+          .then(() => {
+            response.status(201);
+          });
+      });
+    })
+    .then(() => {
+      response.status(201).send({ message: 'Question was added' });
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
 });
 
 module.exports = router;

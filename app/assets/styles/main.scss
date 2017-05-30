@@ -1,12 +1,15 @@
-@import 'reset';
+// @import 'reset';
 @import 'variables';
 @import 'NavBar';
 @import 'Button';
 @import 'Search';
 @import 'Dashboard';
 @import 'MainQuestion';
+@import 'AskQuestion';
+@import 'TagLink';
 
 body {
   background: $white;
+  margin: 0;
   font-family: $open-sans;
 }
