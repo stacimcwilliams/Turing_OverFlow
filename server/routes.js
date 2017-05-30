@@ -62,17 +62,16 @@ router.post('/questions', (request, response) => {
     return response.status(422).send({ error: 'You are missing content from post ' });
   }
 
-  database('questions').insert({ title, question, user_name }, ['id'])
-    .then((id) => {
-      tags.forEach((tag) => {
-        database('tags').insert({ tag, question_id: id[0].id })
-          .then(() => {
-            response.status(201);
-          });
+  database('questions').insert({ title, question, user_name }, ['id', 'title', 'question', 'user_name', 'created_at'])
+    .then((addedQuestion) => {
+      Promise.all([
+        tags.forEach((tag) => {
+          database('tags').insert({ tag, question_id: addedQuestion[0].id });
+        }),
+      ])
+      .then(() => {
+        response.status(201).send(...addedQuestion);
       });
-    })
-    .then(() => {
-      response.status(201).send({ message: 'Question was added' });
     })
     .catch((error) => {
       response.status(500).send({ error });
