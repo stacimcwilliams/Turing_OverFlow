@@ -42,27 +42,6 @@
   }
 }
 
-// .tags-wrapper {
-//   @include ask-question-input-wrappers;
-//   label {
-//     @include ask-question-labels;
-//   }
-//   .tag-input {
-//     width: 75%;
-//     height: inherit;
-//     padding: 0;
-//     border: $input-border-green;
-//     text-indent: 5px;
-//   }
-//   .tag--btn {
-//     width: 10%;
-//     height: 29px;
-//     background: $turing-green;
-//     border: $input-border-green;
-//     cursor: pointer;
-//   }
-// }
-
 .add-tags-wrapper {
   display: flex;
   flex-wrap: wrap;
