@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SimpleMDE from 'simplemde';
 
 import Button from '../Button';
+import TagLink from '../TagLink';
 import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AskQuestion extends Component {
@@ -41,14 +42,20 @@ export default class AskQuestion extends Component {
   }
 
   postQuestion(title, question, name, tags) {
-    this.props.addQuestion(title, question, name, tags)
-      .then((response) => {
-        console.log(response);
-      });
+    this.props.addQuestion(title, question, name, tags);
+  }
+
+  renderTags() {
+    return this.state.tags.map((tag, i) => {
+      return (
+        <TagLink key={i} name={ tag } />
+      );
+    });
   }
 
   render() {
     const { title, question, tagText, tags, name } = this.state;
+    const renderTags = this.renderTags();
 
     return (
       <div className="ask-question-wrapper">
@@ -94,6 +101,7 @@ export default class AskQuestion extends Component {
             handleClick={ () => this.handleTags(tagText) }
           />
         </div>
+        { tags.length !== 0 && (renderTags) }
         <Button
           className="submit-question--btn"
           name="Submit Question"
