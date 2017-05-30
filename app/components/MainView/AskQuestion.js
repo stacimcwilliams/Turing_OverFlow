@@ -15,6 +15,7 @@ export default class AskQuestion extends Component {
       tagText: '',
       tags: [],
     };
+    this.handleTagDelete = this.handleTagDelete.bind(this);
   }
 
   componentDidMount() {
@@ -46,11 +47,14 @@ export default class AskQuestion extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map((tag, i) => {
-      return (
-        <TagLink key={i} name={ tag } />
-      );
-    });
+    return this.state.tags.map((tag, i) =>
+      <TagLink key={i} name={ tag } added='ask' handleClick={ this.handleTagDelete }/>,
+    );
+  }
+
+  handleTagDelete(tagName) {
+    const filteredTags = this.state.tags.filter(tag => tag !== tagName);
+    this.setState({ tags: filteredTags });
   }
 
   render() {
