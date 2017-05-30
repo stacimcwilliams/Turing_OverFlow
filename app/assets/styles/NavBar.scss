@@ -12,6 +12,9 @@
     content: "Overflow";
     margin-left: 4px;
   }
+  &:visited {
+    color: $white;
+  }
 }
 
 .nav-bar {
@@ -22,4 +25,3 @@
   background: $dark-grey;
   border-bottom: 4px solid $turing-green;
 }
-
