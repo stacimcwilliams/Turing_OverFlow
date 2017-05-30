@@ -22,14 +22,4 @@
     display: block;
     margin: 5px 0 10px 0;
   }
-  .question-tag {
-    background: transparentize($turing-green, .7);
-    margin: 5px 5px 5px 0;
-    color: black;
-    cursor: pointer;
-    transition: all 0.5s;
-    &:hover {
-      background: $turing-green;
-    }
-  }
 }
