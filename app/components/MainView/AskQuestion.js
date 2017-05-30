@@ -48,7 +48,7 @@ export default class AskQuestion extends Component {
 
   renderTags() {
     return this.state.tags.map((tag, i) =>
-      <TagLink key={i} name={ tag } added='ask' handleClick={ this.handleTagDelete }/>,
+      <TagLink key={i} name={ tag } added='ask' handleDelete={ this.handleTagDelete }/>,
     );
   }
 
@@ -105,7 +105,9 @@ export default class AskQuestion extends Component {
             handleClick={ () => this.handleTags(tagText) }
           />
         </div>
-        { tags.length !== 0 && (renderTags) }
+        <div className="add-tags-wrapper">
+          { tags.length !== 0 && (renderTags) }
+        </div>
         <Button
           className="submit-question--btn"
           name="Submit Question"
