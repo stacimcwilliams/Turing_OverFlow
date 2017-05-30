@@ -43,7 +43,10 @@ export default class AskQuestion extends Component {
   }
 
   postQuestion(title, question, name, tags) {
-    this.props.addQuestion(title, question, name, tags);
+    this.props.addQuestion(title, question, name, tags)
+      .then(response => {
+        console.log('postQuestion', response);
+      })
   }
 
   renderTags() {
