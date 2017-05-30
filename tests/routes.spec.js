@@ -24,11 +24,18 @@ describe('API Routes', () => {
   })
 
   afterEach((done) => {
-    database.seed.run()
-    .then(() => {
-      done()
-    })
-  })
+   database.migrate.rollback()
+   .then(() => {
+     done();
+   });
+ });
+
+  // afterEach((done) => {
+  //   database.seed.run()
+  //   .then(() => {
+  //     done()
+  //   })
+  // })
 
   describe('GET /questions', () => {
     it('should return all questions', (done) => {
