@@ -1,4 +1,4 @@
-
+ 
 exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTable('questions', (table) => {
@@ -38,9 +38,9 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-  return Promise.all([
-    knex.schema.dropTable('answers'),
-    knex.schema.dropTable('tags'),
-    knex.schema.dropTable('questions'),
-  ]);
+  // return Promise.all([
+    // knex.schema.dropTable('answers'),
+    // knex.schema.dropTable('tags'),
+    // knex.schema.dropTable('questions'),
+  // ]);
 };

@@ -12,40 +12,33 @@ const server = require('../server/main');
 
 chai.use(chaiHttp);
 
-
-describe('hey', () => {
-  it('works?', () => {
-    expect(true)
-  })
-})
-
-describe('Turing overflow server testing', () => {
-  before((done) => {
+describe('API Routes', () => {
+  beforeEach((done) => {
     database.migrate.latest()
     .then(() => {
-      return database.seed.run();
+      return database.seed.run()
     })
     .then(() => {
-      done();
-    });
-  });
+      done()
+    })
+  })
 
-  beforeEach((done) => {
+  afterEach((done) => {
     database.seed.run()
     .then(() => {
-      done();
-    });
-  });
-});
+      done()
+    })
+  })
 
-describe('GET /questions', () => {
-  it('should return all questions', (done) => {
-    chai.request(server)
-    .get('/questions')
-    .end((error, response) => {
-      console.log(response.body);
-      response.should.have.status(200);
-      done();
+  describe('GET /questions', () => {
+    it('should return all questions', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions')
+      .end((error, response) => {
+        console.log(response.body);
+        response.should.have.status(404);
+        done();
+      });
     });
   });
 });
