@@ -15,6 +15,7 @@ export default class AskQuestion extends Component {
       tagText: '',
       tags: [],
     };
+    this.handleTagDelete = this.handleTagDelete.bind(this);
   }
 
   componentDidMount() {
@@ -46,11 +47,14 @@ export default class AskQuestion extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map((tag, i) => {
-      return (
-        <TagLink key={i} name={ tag } />
-      );
-    });
+    return this.state.tags.map((tag, i) =>
+      <TagLink key={i} name={ tag } added='ask' handleDelete={ this.handleTagDelete }/>,
+    );
+  }
+
+  handleTagDelete(tagName) {
+    const filteredTags = this.state.tags.filter(tag => tag !== tagName);
+    this.setState({ tags: filteredTags });
   }
 
   render() {
@@ -101,7 +105,9 @@ export default class AskQuestion extends Component {
             handleClick={ () => this.handleTags(tagText) }
           />
         </div>
-        { tags.length !== 0 && (renderTags) }
+        <div className="add-tags-wrapper">
+          { tags.length !== 0 && (renderTags) }
+        </div>
         <Button
           className="submit-question--btn"
           name="Submit Question"
