@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const QuestionDetail = ({ questionID }) => {
-  return (
-    <h1> Here is that great question {questionID} </h1>
-  )
+
+export default class QuestionDetail extends Component {
+  constructor() {
+    super()
+  }
+  render() {
+    return(
+      <h1>{ this.props.questionID }</h1>
+    )
+  }
 }
-
-export default QuestionDetail

@@ -18,6 +18,21 @@ router.get('/questions', (request, response) => {
     });
 });
 
+router.get('/questions/:id', (request, response) => {
+  const { id } = request.params;
+  database('questions').select().where('id', id)
+  .then((question) => {
+    if (!question.length) {
+      response.status(404).send({ error: 'Question could not be found' })
+    } else {
+      response.status(200).json(question)
+    }
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
+});
+
 router.get('/answers', (request, response) => {
   database('answers').select()
     .then((answers) => {
@@ -66,7 +81,7 @@ router.post('/questions', (request, response) => {
     .then((addedQuestion) => {
       Promise.all([
         tags.forEach((tag) => {
-          database('tags').insert({ tag, question_id: addedQuestion[0].id });
+          database('tags').insert({ tag, question_id: addedQuestion[0].id }).then();
         }),
       ])
       .then(() => {

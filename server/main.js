@@ -29,8 +29,8 @@ app.use(express.static('app'));
 
 app.use('/api/v1', routes);
 
-app.get('/*', (request, response) => {
-  response.status(404).send({ error: 'Not Found' });
+app.get('*', function(request, response) {
+ response.sendFile(path.resolve(__dirname, '../app/index.html'));
 });
 
 if (!module.parent) {
@@ -38,3 +38,5 @@ if (!module.parent) {
     console.log(`Server is listening on ${(app.get('port'))}`);
   });
 }
+
+module.exports = app;
