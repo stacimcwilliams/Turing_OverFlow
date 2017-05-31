@@ -13,7 +13,7 @@
     width: 25px;
     padding: 0;
     border: none;
-    background: $turingGreen;
+    background: $turing-green;
     color: $white;
     cursor: pointer;
     &:after {
@@ -21,7 +21,7 @@
       content: "";
       width: 15px;
       height: 15px;
-      background: $magnifierGlass;
+      background: $magnifier-glass;
       background-size: 15px 15px;
     }
   }

@@ -3,7 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 
 import NavBar from './NavBar'
 import DashboardContainer from '../containers/DashboardContainer';
-import QuestionDetail from './QuestionView/QuestionDetail'
+import AskQuestionContainer from '../containers/AskQuestionContainer';
+import QuestionDetail from './QuestionView/QuestionDetail';
 
 const App = ({ questions }) => {
   return (
@@ -15,6 +16,7 @@ const App = ({ questions }) => {
         const question = questions.find(q => q.id === parseInt(match.params.id))
         return <QuestionDetail {...question} />
       }} />
+      <Route exact path='/ask-question' component={ AskQuestionContainer }/>
     </div>
   );
 };

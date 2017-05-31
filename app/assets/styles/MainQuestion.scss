@@ -1,22 +1,26 @@
 .question-wrapper{
   display: flex;
   flex-direction: column-reverse;
+  margin: 5px 0;
   padding: 8px;
-  border: 1px solid $turingGreen;
+  border: 1px solid $turing-green;
   .count-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
+    font-size: 0.9em;
     div {
       text-align: center;
     }
   }
   h4, h5 {
-    text-align: right;
+    float: right;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    font-size: 0.7em;
   }
-  .title-link {
-    display: block;
-    margin: 5px 0;
+  .main-created-at {
+    font-weight: $normal;
   }
 }

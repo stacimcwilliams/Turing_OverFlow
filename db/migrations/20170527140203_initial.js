@@ -6,9 +6,9 @@ exports.up = function (knex, Promise) {
       table.string('title', 1000);
       table.string('question', 8000);
       table.string('user_name');
-      table.integer('views');
-      table.integer('answers');
-      table.integer('votes');
+      table.integer('views').defaultTo(0);
+      table.integer('answers').defaultTo(0);
+      table.integer('votes').defaultTo(0);
 
       table.timestamps(true, true);
     }),
@@ -17,7 +17,7 @@ exports.up = function (knex, Promise) {
       table.increments('id').primary();
       table.string('answer', 8000);
       table.string('user_name');
-      table.integer('votes');
+      table.integer('votes').defaultTo(0);
       table.integer('question_id').unsigned();
       table.foreign('question_id')
         .references('questions.id');

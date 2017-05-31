@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import MainQuestion from './MainQuestion';
+import MainQuestionContainer from '../../containers/MainQuestionContainer';
 
 export default class Dashboard extends Component {
 
   componentWillMount() {
     this.props.fetchAllQuestions();
-    console.log(this.props);
   }
 
   renderQuestions() {
-    return this.props.questions.map((question, i) => {
+    return this.props.questions.map((question) => {
       return (
-        <MainQuestion key={question.id} {...question} />
+        <MainQuestionContainer key={ question.id } { ...question } />
       );
     });
   }
 
   render() {
+    const questions = this.renderQuestions();
     return (
       <section className="dashboard">
         <h2 className="dashboard-header">Dashboard</h2>
-        {this.renderQuestions()}
+        <Link className="add-question-link" to={'/ask-question'}>Ask Question</Link>
+        { questions }
       </section>
     );
   }
