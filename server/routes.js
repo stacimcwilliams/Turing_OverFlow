@@ -81,7 +81,7 @@ router.post('/questions', (request, response) => {
     .then((addedQuestion) => {
       Promise.all([
         tags.forEach((tag) => {
-          database('tags').insert({ tag, question_id: addedQuestion[0].id });
+          database('tags').insert({ tag, question_id: addedQuestion[0].id }).then();
         }),
       ])
       .then(() => {
