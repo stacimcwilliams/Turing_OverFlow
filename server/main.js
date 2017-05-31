@@ -25,12 +25,12 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-app.use(express.static('app'));
+app.use(express.static('public'));
 
 app.use('/api/v1', routes);
 
 app.get('*', function(request, response) {
- response.sendFile(path.resolve(__dirname, '../app/index.html'));
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 
 if (!module.parent) {
