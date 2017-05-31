@@ -43,6 +43,7 @@ router.get('/answers', (request, response) => {
     });
 });
 
+
 router.get('/tags', (request, response) => {
   database('tags').select()
     .then((tags) => {
@@ -66,6 +67,22 @@ router.get('/questions/:id/tags', (request, response) => {
     .catch((error) => {
       response.status(500).send({ error });
     });
+});
+
+  router.post('/answers', (request, response) => {
+  const validAnswer = ['answer', 'question_id', 'user_name'].every(param => request.body[param]);
+  const { answer, question_id, user_name } = request.body;
+  console.log(request.body);
+  if (!validAnswer) {
+    return response.status(422).send({ error: 'You are missing content from answer ' });
+  }
+  database('answers').insert({ answer, user_name, question_id }, ['id', 'answer', 'user_name'])
+  .then((addedAnswer) => {
+    response.status(201).send(...addedAnswer);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
 });
 
 
