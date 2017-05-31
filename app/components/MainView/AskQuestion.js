@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SimpleMDE from 'simplemde';
+import Alert from 'react-s-alert';
 
 import Button from '../Button';
 import TagLink from '../TagLink';
@@ -42,11 +43,24 @@ export default class AskQuestion extends Component {
     });
   }
 
+  inputChecker() {
+    return Object.keys(this.state).filter((value) => {
+      if (!this.state[value].length && value !== 'tagText') {
+        Alert.error(`Please enter a value into the ${value} field`);
+      } else {
+        return value;
+      }
+    });
+  }
+
   postQuestion(title, question, name, tags) {
-    this.props.addQuestion(title, question, name, tags)
-      .then(response => {
-        console.log('postQuestion', response);
-      })
+    const valuesEntered = this.inputChecker();
+    if (valuesEntered.length === 5) {
+      this.props.addQuestion(title, question, name, tags)
+        .then((response) => {
+          console.log('postQuestion', response);
+        });
+    }
   }
 
   renderTags() {
