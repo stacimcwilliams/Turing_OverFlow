@@ -37,15 +37,19 @@ export default class AskQuestion extends Component {
   }
 
   handleTags(tag) {
-    this.setState({
-      tags: this.state.tags.concat(tag),
-      tagText: '',
-    });
+    if (this.state.tags.length < 5) {
+      this.setState({
+        tags: this.state.tags.concat(tag),
+        tagText: '',
+      });
+    } else {
+      Alert.error('You have met the max limit for tags');
+    }
   }
 
   inputChecker() {
-    return Object.keys(this.state).filter((value) => {
-      if (!this.state[value].length && value !== 'tagText') {
+    return ['title', 'name', 'question'].filter((value) => {
+      if (!this.state[value].length) {
         Alert.error(`Please enter a value into the ${value} field`);
       } else {
         return value;
@@ -53,9 +57,19 @@ export default class AskQuestion extends Component {
     });
   }
 
+  tagChecker() {
+    const { tags } = this.state;
+    if (tags < 1 || tags > 5) {
+      Alert.error('Please add between 1 and 5 tags to the question');
+      return false;
+    }
+    return true;
+  }
+
   postQuestion(title, question, name, tags) {
     const valuesEntered = this.inputChecker();
-    if (valuesEntered.length === 5) {
+    const tagsChecker = this.tagChecker();
+    if (valuesEntered.length === 3 && tagsChecker) {
       this.props.addQuestion(title, question, name, tags)
         .then((response) => {
           console.log('postQuestion', response);
