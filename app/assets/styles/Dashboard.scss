@@ -17,16 +17,12 @@
     &:hover {
       background-color:  $turing-green;
     }
-    .dashboard-header-container{
-      display: flex;
-    }
   }
-}
-
-
-@media only screen and (min-width: 500px)  {
-    .dashboard-header{
-      text-align: center;
-    }
-
+  .dashboard-header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
 }
