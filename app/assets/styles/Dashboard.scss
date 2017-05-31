@@ -14,15 +14,28 @@
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
+    margin-left: 10px;
+    height: 25px;
+    font-size: xx-small;
+    display: inline-flex;
+    align-items: center;
     &:hover {
       background-color:  $turing-green;
     }
   }
   .dashboard-header-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-right: 5%;
     margin-left: 5%;
+  }
+}
+
+@media screen and (min-width: 350px) {
+  .dashboard{
+    .add-question-link{
+      font-size: 18px;
+    }
   }
 }
