@@ -5,4 +5,24 @@
     font-size: 1.4em;
     color: $default-grey
   }
+  .add-question-link{
+    text-decoration: none;
+    background: transparentize($turing-green, .7);
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    &:hover {
+      background-color:  $turing-green;
+    }
+  }
+  .dashboard-header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
 }

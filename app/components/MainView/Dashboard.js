@@ -21,8 +21,10 @@ export default class Dashboard extends Component {
     const questions = this.renderQuestions();
     return (
       <section className="dashboard">
-        <h2 className="dashboard-header">Dashboard</h2>
-        <Link className="add-question-link" to={'/ask-question'}>Ask Question</Link>
+        <div className='dashboard-header-container'>
+          <h2 className="dashboard-header">Dashboard</h2>
+          <Link className="add-question-link" to={'/ask-question'}>Ask Question</Link>
+        </div>
         { questions }
       </section>
     );
