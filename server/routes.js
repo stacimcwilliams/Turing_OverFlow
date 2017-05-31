@@ -69,10 +69,10 @@ router.get('/questions/:id/tags', (request, response) => {
     });
 });
 
-  router.post('/answers', (request, response) => {
+router.post('/answers', (request, response) => {
   const validAnswer = ['answer', 'question_id', 'user_name'].every(param => request.body[param]);
-  const { answer, question_id, user_name } = request.body;
-  console.log(request.body);
+  const { answer, user_name, question_id } = request.body;
+
   if (!validAnswer) {
     return response.status(422).send({ error: 'You are missing content from answer ' });
   }
