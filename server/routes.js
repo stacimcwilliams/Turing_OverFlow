@@ -23,9 +23,9 @@ router.get('/questions/:id', (request, response) => {
   database('questions').select().where('id', id)
   .then((question) => {
     if (!question.length) {
-      response.status(404).send({ error: 'Question could not be found' })
+      response.status(404).send({ error: 'Question could not be found' });
     } else {
-      response.status(200).json(question)
+      response.status(200).json(question);
     }
   })
   .catch((error) => {

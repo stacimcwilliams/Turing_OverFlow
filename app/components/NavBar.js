@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import Search from './Search'
+import Search from './Search';
 
 const NavBar = () => {
   return (
@@ -11,7 +11,7 @@ const NavBar = () => {
       </Link >
       <Search />
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
