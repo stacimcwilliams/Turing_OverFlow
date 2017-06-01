@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -29,7 +30,7 @@ app.use(express.static('public'));
 
 app.use('/api/v1', routes);
 
-app.get('*', function(request, response) {
+app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 

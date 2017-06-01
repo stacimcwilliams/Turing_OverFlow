@@ -6,7 +6,7 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 
-import NavBar from './NavBar'
+import NavBar from './NavBar';
 import DashboardContainer from '../containers/DashboardContainer';
 import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
@@ -18,8 +18,8 @@ const App = () => {
       <NavBar />
       <Route exact path='/' component={ DashboardContainer } />
       <Route exact path='/ask-question' component={ AskQuestionContainer }/>
-      <Route path="/question/:id" render={ ({ match }) =>  {
-        return <QuestionDetailContainer id={match.params.id} />
+      <Route path="/question/:id" render={ ({ match }) => {
+        return <QuestionDetailContainer id={match.params.id} />;
       }}
       />
       <Alert

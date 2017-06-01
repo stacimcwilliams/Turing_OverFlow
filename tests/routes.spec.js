@@ -6,7 +6,7 @@ const database = require('knex')(configuration);
 const chai = require('chai');
 
 const should = chai.should();
-const { expect } = require('chai')
+const { expect } = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server/main');
 
@@ -16,19 +16,19 @@ describe('API Routes', () => {
   beforeEach((done) => {
     database.migrate.latest()
     .then(() => {
-      return database.seed.run()
+      return database.seed.run();
     })
     .then(() => {
-      done()
-    })
-  })
+      done();
+    });
+  });
 
   afterEach((done) => {
-   database.migrate.rollback()
-   .then(() => {
-     done();
-   });
- });
+    database.migrate.rollback()
+    .then(() => {
+      done();
+    });
+  });
 
   // afterEach((done) => {
   //   database.seed.run()
@@ -42,7 +42,6 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/questions')
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(404);
         done();
       });
