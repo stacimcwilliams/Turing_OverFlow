@@ -1,0 +1,9 @@
+.question-desc-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  .question-desc-md {
+    max-height: 600px;
+    max-width: 600px;
+    overflow: auto;
+  }
+}

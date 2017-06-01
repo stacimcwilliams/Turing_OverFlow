@@ -23,7 +23,7 @@ export default class MainQuestion extends Component {
   }
 
   render() {
-    const { title, user_name, answers, views, votes, created_at } = this.props;
+    const { title, user_name, answers, views, votes, created_at, id } = this.props;
     const tags = this.renderTags();
     return (
       <div className="question-wrapper">
@@ -33,7 +33,7 @@ export default class MainQuestion extends Component {
           <div>views: { views }</div>
         </div>
         <div className="summary-wrapper">
-          <Link className="title-link" to={'/question'}>{ title }</Link>
+          <Link className="title-link" to={`/question/${id}`}>{ title }</Link>
           <div className="tags-wrapper">
             { tags }
           </div>
