@@ -4,12 +4,15 @@ module.exports = {
   devtool: '#source-map',
   context: __dirname,
   entry: [
-    './server/main.js',
+    './app/index.js',
   ],
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
     // publicPath: '/',
+  },
+  node: {
+    fs: 'empty',
   },
   module: {
     loaders: [

@@ -33,6 +33,16 @@ router.get('/questions/:id', (request, response) => {
   });
 });
 
+router.get('/answers', (request, response) => {
+  database('answers').select()
+    .then((answers) => {
+      response.status(200).json(answers);
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
+});
+
 router.get('/answers/:question_id', (request, response) => {
   const { question_id } = request.params
   database('answers').where({ question_id }).select()
