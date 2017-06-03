@@ -170,4 +170,21 @@ describe('API Routes', () => {
       });
     });
   });
+
+  describe('/api/v1/answers/:question_id', () => {
+    it('should return an answer by question_id', (done) => {
+      chai.request(server)
+      .get('/api/v1/answers/1001')
+      .end((error, response) => 
+        response.should.have.status(200);
+        response.body.should.be.a('array');
+        response.body.should.have.length(1);
+        response.body[0].should.have.property('id');
+        response.body[0].should.have.property('answer');
+        response.body[0].should.have.property('user_name');
+        response.body[0].should.have.property('votes');
+        done();
+      });
+    });
+  });
 });
