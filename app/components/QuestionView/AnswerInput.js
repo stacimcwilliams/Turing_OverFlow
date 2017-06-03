@@ -44,25 +44,14 @@ export default class AnswerInput extends Component {
   }
 
   postAnswer(answer, name) {
-    const { question_id } = this.props
+    const { question_id, refreshAnswers } = this.props
     const valuesEntered = this.inputChecker();
     if (valuesEntered.length === 2) {
       this.props.addAnswer(question_id, answer, name)
         .then((response) => {
-          console.log('postAnswer', response);
+          refreshAnswers()
         });
     }
-  }
-
-  renderTags() {
-    return this.state.tags.map((tag, i) =>
-      <TagLink key={i} name={ tag } added='ask' handleDelete={ this.handleTagDelete }/>,
-    );
-  }
-
-  handleTagDelete(tagName) {
-    const filteredTags = this.state.tags.filter(tag => tag !== tagName);
-    this.setState({ tags: filteredTags });
   }
 
   render() {

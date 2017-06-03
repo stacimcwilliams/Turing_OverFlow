@@ -38,7 +38,7 @@ export const addQuestion = (title, question, name, tags) => {
     );
 };
 
-export const addAnswer = (question_id, name, answer) => {
+export const addAnswer = (question_id, answer, name) => {
   return () =>
     fetch('/api/v1/answers', {
       method: 'POST',
