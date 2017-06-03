@@ -26,7 +26,7 @@ export default class QuestionDetail extends Component {
     this.handleVotes = this.handleVotes.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { questions, id } = this.props;
     if (questions) {
       const q = questions.find((q) => {
@@ -34,6 +34,7 @@ export default class QuestionDetail extends Component {
       });
       this.fetchTags(q.id);
       this.setState(q);
+      this.updateQuestionViews(q.id, q.views);
       // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
@@ -52,6 +53,14 @@ export default class QuestionDetail extends Component {
       });
   }
 
+  updateQuestionViews(id, views) {
+    views += 1;
+    this.props.updateQuestionCounters(id, views, 'views')
+    .then((response) => {
+      this.setState({ views: response.views });
+    });
+  }
+
   renderTags() {
     return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
   }
@@ -62,7 +71,7 @@ export default class QuestionDetail extends Component {
     const { name } = e.target;
 
     voteValue = name === 'up' ? voteValue += 1 : voteValue -= 1;
-    this.props.updateQuestionVote(id, voteValue)
+    this.props.updateQuestionCounters(id, voteValue, 'votes')
       .then((response) => {
         this.setState({ votes: response.votes });
       });
@@ -70,7 +79,7 @@ export default class QuestionDetail extends Component {
 
   render() {
     const { title, question, user_name, answers, views, votes, created_at } = this.state;
-    let id = this.state.id || this.props.id;
+    const id = this.state.id || this.props.id;
     const tags = this.renderTags();
 
     return (
