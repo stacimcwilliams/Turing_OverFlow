@@ -39,9 +39,9 @@ export const addQuestion = (title, question, name, tags) => {
 };
 
 
-export const updateQuestionVote = (id, voteScore) => {
+export const updateQuestionCounters = (id, voteScore, counter) => {
   return () =>
-    fetch(`/api/v1/questions/${id}/votes?value=${voteScore}`, {
+    fetch(`/api/v1/questions/${id}?counter=${counter}&value=${voteScore}`, {
       method: 'PATCH',
     })
     .then(response =>
