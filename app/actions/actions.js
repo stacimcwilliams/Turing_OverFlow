@@ -38,3 +38,12 @@ export const addQuestion = (title, question, name, tags) => {
     );
 };
 
+export const updateQuestionVote = (id, voteScore) => {
+  return () =>
+    fetch(`/api/v1/questions/${id}/votes?value=${voteScore}`, {
+      method: 'PATCH',
+    })
+    .then(response =>
+      response.json(),
+    );
+};
