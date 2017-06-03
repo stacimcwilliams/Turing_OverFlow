@@ -4,6 +4,14 @@
   .question-desc-md {
     max-height: 600px;
     max-width: 600px;
+    padding: 3px;
+    border: 1px solid $dark-grey;
     overflow: auto;
+  }
+  .detail-user-info {
+    font-size: 0.7em;
+    p {
+      text-align: right;
+    }
   }
 }
