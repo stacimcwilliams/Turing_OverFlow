@@ -38,3 +38,25 @@ export const addQuestion = (title, question, name, tags) => {
     );
 };
 
+
+export const updateQuestionVote = (id, voteScore) => {
+  return () =>
+    fetch(`/api/v1/questions/${id}/votes?value=${voteScore}`, {
+      method: 'PATCH',
+    })
+    .then(response =>
+      response.json(),
+    );
+};
+
+export const addAnswer = (question_id, answer, name) => {
+  return () =>
+    fetch('/api/v1/answers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question_id, user_name: name, answer }),
+    })
+    .then(response =>
+      response.json(),
+    );
+};

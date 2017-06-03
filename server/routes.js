@@ -35,6 +35,17 @@ router.get('/questions/:id', (request, response) => {
 
 router.get('/answers', (request, response) => {
   database('answers').select()
+    .then((answers) => {
+      response.status(200).json(answers);
+    })
+    .catch((error) => {
+      response.status(500).send({ error });
+    });
+});
+
+router.get('/answers/:question_id', (request, response) => {
+  const { question_id } = request.params
+  database('answers').where({ question_id }).select()
   .then((answers) => {
     response.status(200).json(answers);
   })
@@ -108,6 +119,27 @@ router.post('/questions', (request, response) => {
   .catch((error) => {
     response.status(500).send({ error });
   });
+});
+
+router.patch('/questions/:id/votes', (request, response) => {
+  const { id } = request.params;
+  const { value } = request.query;
+  console.log(id, value);
+  database('questions').where('id', id).select()
+    .then((question) => {
+      if (!question.length) {
+        response.status(404).send({ error: 'Invalid Question ID' });
+      } else {
+        database('questions').where('id', id)
+          .update({ votes: value }, ['votes'])
+          .then((updatedVote) => {
+            response.status(200).send(...updatedVote);
+          })
+          .catch((error) => {
+            response.status(500).send({ error });
+          });
+      }
+    });
 });
 
 module.exports = router;

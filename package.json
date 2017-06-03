@@ -4,7 +4,7 @@
   "description": "An application intended for the Turing community to server as it's internal stack overflow.",
   "main": "app/index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon server/main.js",
+    "start": "NODE_ENV=development node server/main.js",
     "build": "webpack --config ./webpack.prod.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "test": "mocha tests/* --no-timeouts",

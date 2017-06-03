@@ -8,21 +8,4 @@
     border: none;
     text-indent: 5px;
   }
-  .search--btn {
-    height: inherit;
-    width: 25px;
-    padding: 0;
-    border: none;
-    background: $turing-green;
-    color: $white;
-    cursor: pointer;
-    &:after {
-      display: inline-block;
-      content: "";
-      width: 15px;
-      height: 15px;
-      background: $magnifier-glass;
-      background-size: 15px 15px;
-    }
-  }
 }

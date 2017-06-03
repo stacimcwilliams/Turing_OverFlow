@@ -2,8 +2,30 @@
   width: 90%;
   margin: 0 auto;
   .question-desc-md {
-    max-height: 600px;
-    max-width: 600px;
-    overflow: auto;
+    @include markdown-style;
+  }
+  .detail-user-info {
+    font-size: 0.7em;
+    p {
+      text-align: right;
+    }
+  }
+  .question-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vote-details-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h6 {
+      margin: 0;
+    }
+    .vote-btn-wrapper {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
   }
 }

@@ -11,6 +11,9 @@ module.exports = {
     filename: 'bundle.js',
     // publicPath: '/',
   },
+  node: {
+    fs: 'empty',
+  },
   module: {
     loaders: [
       {

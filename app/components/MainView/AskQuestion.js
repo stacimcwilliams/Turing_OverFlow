@@ -132,7 +132,7 @@ export default class AskQuestion extends Component {
           />
           <Button
             className="tag--btn"
-            name="+"
+            btnName="+"
             handleClick={ () => this.handleTags(tagText) }
           />
         </div>
@@ -141,7 +141,7 @@ export default class AskQuestion extends Component {
         </div>
         <Button
           className="submit-question--btn"
-          name="Submit Question"
+          btnName="Submit Question"
           handleClick={ () => this.postQuestion(title, question, name, tags) }
         />
       </div>
