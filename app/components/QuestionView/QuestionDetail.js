@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import Button from '../Button';
 
+import Button from '../Button'
+import AnswerInputContainer from '../../containers/AnswerInputContainer'
+import AnswerList from './AnswerList'
+// import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
 
 export default class QuestionDetail extends Component {
   constructor() {
@@ -27,26 +30,21 @@ export default class QuestionDetail extends Component {
         return q.id * 1 === id * 1;
       });
       this.setState(q);
-      fetchAnswers().then(anwsers => this.setState({ answersArray }));
+      // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
-      fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }));
+      // fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
     }
   }
 
-  fetchAnswers() {
-    // fetch the anwsers here
-    const answersID = this.state.anwsers;
-    // return fetch(bla bla bla)
+  fetchQuestion() {
+    //return fetch(ble bla)
   }
 
-  //
-  // fetchQuestion() {
-  //   // return fetch(ble bla)
-  // }
-
   render() {
-    const { title, question, user_name, answers, views, votes, created_at, id } = this.state;
+    const { title, question, user_name, answers, views, votes, created_at } = this.state
+    let id = this.state.id || this.props.id
+
     return (
       <section>
         <div className="question-desc-wrapper">
@@ -56,7 +54,7 @@ export default class QuestionDetail extends Component {
             source={ question }
           />
           <p>{ user_name }</p>
-          <Button name={'Answer!'}/>
+          <AnswerList question_id={id} />
         </div>
       </section>
     );
