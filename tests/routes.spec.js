@@ -95,7 +95,6 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/questions/1001/tags')
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('array');
@@ -103,6 +102,43 @@ describe('API Routes', () => {
         response.body[0].should.have.property('id');
         response.body[0].should.have.property('tag');
         done();
+      });
+    });
+  });
+
+  describe('POST /api/v1/questions', () => {
+    it('should create a new questions', (done) => {
+      chai.request(server)
+      .post('/api/v1/questions')
+      .send({
+        title: 'Where do you put the script tag for JavaScript?',
+        question: 'Where is the correct place to put the JavaScript tag in the HTML file?',
+        user_name: 'Kyle Zucker',
+        tags: ['JavaScript', 'React'],
+      })
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.body.should.be.a('object');
+        response.body.should.have.property('id');
+        response.body.should.have.property('title');
+        response.body.should.have.property('question');
+        response.body.should.have.property('user_name');
+        chai.request(server)
+        .get('/api/v1/questions/1')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body[0].title.should.equal('Where do you put the script tag for JavaScript?');
+          chai.request(server)
+          .get('/api/v1/questions/1/tags')
+          .end((err, response) => {
+            response.should.have.status(200);
+            response.should.be.json;
+            response.body.should.have.length(2);
+          });
+          done();
+        });
       });
     });
   });
