@@ -4,8 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import Button from '../Button';
 import TagLink from '../TagLink';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
-import AnswerList from './AnswerList';
-// import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
+import AnswerListContainer from '../../containers/AnswerListContainer';
 
 export default class QuestionDetail extends Component {
   constructor() {
@@ -115,7 +114,7 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <AnswerList question_id={id} />
+          <AnswerListContainer question_id={id} />
         </div>
       </section>
     );
