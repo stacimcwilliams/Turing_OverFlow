@@ -42,7 +42,18 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/questions')
       .end((error, response) => {
-        response.should.have.status(404);
+        console.log(response.body);
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('array');
+        response.body.should.have.length(1);
+        response.body[0].should.have.property('id');
+        response.body[0].should.have.property('title');
+        response.body[0].should.have.property('question');
+        response.body[0].should.have.property('user_name');
+        response.body[0].should.have.property('views');
+        response.body[0].should.have.property('answers');
+        response.body[0].should.have.property('votes');
         done();
       });
     });
