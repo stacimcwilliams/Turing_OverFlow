@@ -106,7 +106,6 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <Button btnName="Answer"/>
           <AnswerList question_id={id} />
         </div>
       </section>

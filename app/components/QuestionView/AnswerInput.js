@@ -3,7 +3,6 @@ import SimpleMDE from 'simplemde';
 import Alert from 'react-s-alert';
 
 import Button from '../Button';
-import TagLink from '../TagLink';
 import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AnswerInput extends Component {
@@ -11,9 +10,8 @@ export default class AnswerInput extends Component {
     super();
     this.state = {
       name: '',
-      answer: ''
+      answer: '',
     };
-    this.handleTagDelete = this.handleTagDelete.bind(this);
   }
 
   componentDidMount() {
@@ -74,7 +72,7 @@ export default class AnswerInput extends Component {
         <textarea id="editor" />
         <Button
           className="submit-answer--btn"
-          name="Submit answer"
+          btnName="Submit answer"
           handleClick={ () => this.postAnswer(answer, name) }
         />
       </div>

@@ -56,4 +56,7 @@ export const addAnswer = (question_id, answer, name) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question_id, user_name: name, answer }),
     })
+    .then(response =>
+      response.json(),
+    );
 };
