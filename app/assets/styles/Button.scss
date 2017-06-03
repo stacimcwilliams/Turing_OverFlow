@@ -2,3 +2,30 @@
 	background: $turing-green;
 	cursor: pointer;
 }
+
+.search--btn {
+	height: inherit;
+	width: 25px;
+	padding: 0;
+	border: none;
+	background: $turing-green;
+	color: $white;
+	cursor: pointer;
+	&:after {
+		display: inline-block;
+		content: "";
+		width: 15px;
+		height: 15px;
+		background: $magnifier-glass;
+		background-size: 15px 15px;
+	}
+}
+
+.vote-up {
+	@include vote-btn;
+}
+
+.vote-down {
+	@include vote-btn;
+	transform: rotate(180deg);
+}
