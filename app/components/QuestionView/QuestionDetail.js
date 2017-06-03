@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import Button from '../Button'
+import Button from '../Button';
 import TagLink from '../TagLink';
-import AnswerInputContainer from '../../containers/AnswerInputContainer'
-import AnswerList from './AnswerList'
+import AnswerInputContainer from '../../containers/AnswerInputContainer';
+import AnswerList from './AnswerList';
 // import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
 
 export default class QuestionDetail extends Component {

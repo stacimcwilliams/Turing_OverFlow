@@ -1,0 +1,7 @@
+.answer-detail{
+  width: 90%;
+  margin: 0 auto;
+  .answer-desc-md {
+    @include markdown-style;
+  }
+}
