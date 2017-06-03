@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
+
+import TagLink from '../TagLink';
 import Button from '../Button'
 
 
@@ -17,6 +19,7 @@ export default class QuestionDetail extends Component {
       user_name: '',
       views: '',
       votes: '',
+      tags: [],
     };
   }
 
@@ -26,11 +29,12 @@ export default class QuestionDetail extends Component {
       const q = questions.find((q) => {
         return q.id * 1 === id * 1;
       });
+      this.fetchTags(q.id);
       this.setState(q);
-      fetchAnswers().then(anwsers => this.setState({ answersArray }))
+      // fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
-      fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
+      // fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
     }
   }
 
@@ -44,8 +48,20 @@ export default class QuestionDetail extends Component {
     //return fetch(ble bla)
   }
 
+  fetchTags(id) {
+    this.props.fetchQuestionTags(id)
+      .then((tags) => {
+        this.setState({ tags: this.state.tags.concat(tags) });
+      });
+  }
+
+  renderTags() {
+    return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+  }
+
   render() {
-    const { title, question, user_name, answers, views, votes, created_at, id } = this.state
+    const { title, question, user_name, answers, views, votes, created_at, id } = this.state;
+    const tags = this.renderTags();
     return (
       <section>
         <div className="question-desc-wrapper">
@@ -54,7 +70,13 @@ export default class QuestionDetail extends Component {
             className="question-desc-md"
             source={ question }
           />
-          <p>{ user_name }</p>
+          <div className="tags-wrapper">
+            { tags }
+          </div>
+          <div className="detail-user-info">
+            <p>asked { created_at }</p>
+            <p>{ user_name }</p>
+          </div>
           <Button name={'Answer!'}/>
         </div>
       </section>
