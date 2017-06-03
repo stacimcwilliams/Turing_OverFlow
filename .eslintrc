@@ -26,6 +26,8 @@
     "func-names": [0],
     "prefer-arrow-callback": [0],
     "import/extensions": [0],
-    "import/first": [0]
+    "import/first": [0],
+    "array-callback-return": [0],
+    "no-undef": [0]
   }
 }
