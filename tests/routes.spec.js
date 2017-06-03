@@ -56,7 +56,6 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/questions/1001')
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('array');
@@ -69,6 +68,40 @@ describe('API Routes', () => {
         response.body[0].should.have.property('answers');
         response.body[0].should.have.property('votes');
         response.body[0].title.should.equal('How do I convert a number to a string in JavaScript?');
+        done();
+      });
+    });
+  });
+
+  describe('GET /answers', () => {
+    it('should return all questions', (done) => {
+      chai.request(server)
+      .get('/api/v1/answers')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('array');
+        response.body.should.have.length(2);
+        response.body[0].should.have.property('user_name');
+        response.body[0].should.have.property('votes');
+        response.body[0].should.have.property('question_id');
+        done();
+      });
+    });
+  });
+
+  describe('GET /questions/:id/tags', () => {
+    it('should return a tag by id', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions/1001/tags')
+      .end((error, response) => {
+        console.log(response.body);
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('array');
+        response.body.should.have.length(3);
+        response.body[0].should.have.property('id');
+        response.body[0].should.have.property('tag');
         done();
       });
     });
