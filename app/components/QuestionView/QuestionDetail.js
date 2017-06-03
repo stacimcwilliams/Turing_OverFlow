@@ -73,11 +73,18 @@ export default class QuestionDetail extends Component {
           <div className="tags-wrapper">
             { tags }
           </div>
-          <div className="detail-user-info">
-            <p>asked { created_at }</p>
-            <p>{ user_name }</p>
+          <div className="question-info-wrapper">
+            <div className="vote-btn">
+              <Button name="UP" />
+              { votes }
+              <Button name="DOWN" />
+            </div>
+            <div className="detail-user-info">
+              <p>asked { created_at }</p>
+              <p>{ user_name }</p>
+            </div>
           </div>
-          <Button name={'Answer!'}/>
+          <Button name="Answer"/>
         </div>
       </section>
     );
