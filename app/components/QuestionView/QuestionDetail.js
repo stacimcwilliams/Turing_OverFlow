@@ -23,7 +23,7 @@ export default class QuestionDetail extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { questions, id } = this.props;
     if (questions) {
       const q = questions.find((q) => {
@@ -44,6 +44,7 @@ export default class QuestionDetail extends Component {
   render() {
     const { title, question, user_name, answers, views, votes, created_at } = this.state
     let id = this.state.id || this.props.id
+
     return (
       <section>
         <div className="question-desc-wrapper">
