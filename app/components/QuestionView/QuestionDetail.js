@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
+
 import Button from '../Button'
+import AnswerInputContainer from '../../containers/AnswerInputContainer'
 
 
 export default class QuestionDetail extends Component {
@@ -27,10 +29,10 @@ export default class QuestionDetail extends Component {
         return q.id * 1 === id * 1;
       });
       this.setState(q);
-      fetchAnswers().then(anwsers => this.setState({ answersArray }))
+      // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
-      fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
+      // fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
     }
   }
 
@@ -56,6 +58,7 @@ export default class QuestionDetail extends Component {
           />
           <p>{ user_name }</p>
           <Button name={'Answer!'}/>
+          <AnswerInputContainer question_id={id} /> 
         </div>
       </section>
     );
