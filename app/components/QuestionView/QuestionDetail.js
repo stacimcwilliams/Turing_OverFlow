@@ -21,6 +21,7 @@ export default class QuestionDetail extends Component {
       votes: '',
       tags: [],
     };
+    this.handleVotes = this.handleVotes.bind(this);
   }
 
   componentDidMount () {
@@ -59,6 +60,18 @@ export default class QuestionDetail extends Component {
     return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
   }
 
+  handleVotes(e) {
+    const { id, votes } = this.state;
+    let voteValue = votes;
+    const { name } = e.target;
+
+    voteValue = name === 'up' ? voteValue += 1 : voteValue -= 1;
+    this.props.updateQuestionVote(id, voteValue)
+      .then((response) => {
+        this.setState({ votes: response.votes });
+      });
+  }
+
   render() {
     const { title, question, user_name, answers, views, votes, created_at, id } = this.state;
     const tags = this.renderTags();
@@ -79,10 +92,14 @@ export default class QuestionDetail extends Component {
               <div className="vote-btn-wrapper">
                 <Button
                   className="vote-up"
+                  name="up"
+                  handleClick= { this.handleVotes }
                 />
                 { votes }
                 <Button
                   className="vote-down"
+                  name="down"
+                  handleClick= { this.handleVotes }
                 />
               </div>
             </div>
@@ -91,7 +108,7 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <Button name="Answer"/>
+          <Button btnName="Answer"/>
         </div>
       </section>
     );
