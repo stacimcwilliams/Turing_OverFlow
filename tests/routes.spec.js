@@ -142,4 +142,32 @@ describe('API Routes', () => {
       });
     });
   });
+
+  describe('POST /api/v1/answers', () => {
+    it('should create a new answer', (done) => {
+      chai.request(server)
+      .post('/api/v1/answers')
+      .send({
+        answer: 'You should put it inside the body of your HTML file',
+        question_id: '1001',
+        user_name: 'Staci McWilliams',
+      })
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.body.should.be.a('object');
+        response.body.should.have.property('id');
+        response.body.should.have.property('answer');
+        response.body.should.have.property('user_name');
+        chai.request(server)
+        .get('/api/v1/answers')
+        .end((err, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('array');
+          response.body.should.have.length(3);
+          done();
+        });
+      });
+    });
+  });
 });
