@@ -11,4 +11,4 @@ const Button = ({ handleClick, className, name, btnName }) => {
   )
 }
 
-export default Button
+export default Button;

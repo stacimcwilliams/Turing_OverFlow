@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import TagLink from '../TagLink';
 import Button from '../Button'
-
+import TagLink from '../TagLink';
+import AnswerInputContainer from '../../containers/AnswerInputContainer'
+import AnswerList from './AnswerList'
+// import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
 
 export default class QuestionDetail extends Component {
   constructor() {
@@ -24,7 +26,7 @@ export default class QuestionDetail extends Component {
     this.handleVotes = this.handleVotes.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { questions, id } = this.props;
     if (questions) {
       const q = questions.find((q) => {
@@ -32,17 +34,11 @@ export default class QuestionDetail extends Component {
       });
       this.fetchTags(q.id);
       this.setState(q);
-      // fetchAnswers().then(anwsers => this.setState({ answersArray }))
+      // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
       // fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
     }
-  }
-
-  fetchAnswers() {
-    //fetch the anwsers here
-    const answersID = this.state.anwsers
-    // return fetch(bla bla bla)
   }
 
   fetchQuestion() {
@@ -73,8 +69,10 @@ export default class QuestionDetail extends Component {
   }
 
   render() {
-    const { title, question, user_name, answers, views, votes, created_at, id } = this.state;
+    const { title, question, user_name, answers, views, votes, created_at } = this.state;
+    let id = this.state.id || this.props.id;
     const tags = this.renderTags();
+
     return (
       <section>
         <div className="question-desc-wrapper">
@@ -109,6 +107,7 @@ export default class QuestionDetail extends Component {
             </div>
           </div>
           <Button btnName="Answer"/>
+          <AnswerList question_id={id} />
         </div>
       </section>
     );
