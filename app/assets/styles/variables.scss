@@ -40,3 +40,11 @@ $input-border-green: 2px solid #05c2d1;
     background: $vote-arrow-hover;
   }
 }
+
+@mixin markdown-style {
+  max-height: 600px;
+  max-width: 600px;
+  padding: 3px;
+  border: 1px solid $dark-grey;
+  overflow: auto;
+}
