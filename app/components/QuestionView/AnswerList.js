@@ -26,6 +26,8 @@ export default class AnswerList extends Component {
       .then(response => {
         response.json()
         .then((answersArray) => {
+          const voteValue = answersArray.length;
+          this.props.updateQuestionCounters(question_id, voteValue, 'answers');
           this.setState({ answersArray });
         });
       });
