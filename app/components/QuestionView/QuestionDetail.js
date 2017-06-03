@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import Button from '../Button'
+import TagLink from '../TagLink';
 import AnswerInputContainer from '../../containers/AnswerInputContainer'
 import AnswerList from './AnswerList'
 // import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
@@ -20,7 +21,9 @@ export default class QuestionDetail extends Component {
       user_name: '',
       views: '',
       votes: '',
+      tags: [],
     };
+    this.handleVotes = this.handleVotes.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +32,7 @@ export default class QuestionDetail extends Component {
       const q = questions.find((q) => {
         return q.id * 1 === id * 1;
       });
+      this.fetchTags(q.id);
       this.setState(q);
       // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
@@ -41,9 +45,33 @@ export default class QuestionDetail extends Component {
     //return fetch(ble bla)
   }
 
+  fetchTags(id) {
+    this.props.fetchQuestionTags(id)
+      .then((tags) => {
+        this.setState({ tags: this.state.tags.concat(tags) });
+      });
+  }
+
+  renderTags() {
+    return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+  }
+
+  handleVotes(e) {
+    const { id, votes } = this.state;
+    let voteValue = votes;
+    const { name } = e.target;
+
+    voteValue = name === 'up' ? voteValue += 1 : voteValue -= 1;
+    this.props.updateQuestionVote(id, voteValue)
+      .then((response) => {
+        this.setState({ votes: response.votes });
+      });
+  }
+
   render() {
-    const { title, question, user_name, answers, views, votes, created_at } = this.state
-    let id = this.state.id || this.props.id
+    const { title, question, user_name, answers, views, votes, created_at } = this.state;
+    let id = this.state.id || this.props.id;
+    const tags = this.renderTags();
 
     return (
       <section>
@@ -53,7 +81,32 @@ export default class QuestionDetail extends Component {
             className="question-desc-md"
             source={ question }
           />
-          <p>{ user_name }</p>
+          <div className="tags-wrapper">
+            { tags }
+          </div>
+          <div className="question-info-wrapper">
+            <div className="vote-details-wrapper">
+              <h6>Votes</h6>
+              <div className="vote-btn-wrapper">
+                <Button
+                  className="vote-up"
+                  name="up"
+                  handleClick= { this.handleVotes }
+                />
+                { votes }
+                <Button
+                  className="vote-down"
+                  name="down"
+                  handleClick= { this.handleVotes }
+                />
+              </div>
+            </div>
+            <div className="detail-user-info">
+              <p>asked { created_at }</p>
+              <p>{ user_name }</p>
+            </div>
+          </div>
+          <Button btnName="Answer"/>
           <AnswerList question_id={id} />
         </div>
       </section>
