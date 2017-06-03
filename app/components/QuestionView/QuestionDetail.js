@@ -74,10 +74,17 @@ export default class QuestionDetail extends Component {
             { tags }
           </div>
           <div className="question-info-wrapper">
-            <div className="vote-btn">
-              <Button name="UP" />
-              { votes }
-              <Button name="DOWN" />
+            <div className="vote-details-wrapper">
+              <h6>Votes</h6>
+              <div className="vote-btn-wrapper">
+                <Button
+                  className="vote-up"
+                />
+                { votes }
+                <Button
+                  className="vote-down"
+                />
+              </div>
             </div>
             <div className="detail-user-info">
               <p>asked { created_at }</p>
