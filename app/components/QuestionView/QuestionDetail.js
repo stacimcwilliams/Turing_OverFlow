@@ -4,8 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import Button from '../Button';
 import TagLink from '../TagLink';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
-import AnswerList from './AnswerList';
-// import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
+import AnswerListContainer from '../../containers/AnswerListContainer';
 
 export default class QuestionDetail extends Component {
   constructor() {
@@ -34,7 +33,7 @@ export default class QuestionDetail extends Component {
       });
       this.fetchTags(q.id);
       this.setState(q);
-      this.updateQuestionViews(q.id, q.views);
+      this.updateQuestionViews(q.id);
       // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
@@ -53,9 +52,8 @@ export default class QuestionDetail extends Component {
       });
   }
 
-  updateQuestionViews(id, views) {
-    views += 1;
-    this.props.updateQuestionCounters(id, views, 'views')
+  updateQuestionViews(id) {
+    this.props.updateQuestionCounters(id, 'up', 'views')
     .then((response) => {
       this.setState({ views: response.views });
     });
@@ -66,12 +64,10 @@ export default class QuestionDetail extends Component {
   }
 
   handleVotes(e) {
-    const { id, votes } = this.state;
-    let voteValue = votes;
+    const { id } = this.state;
     const { name } = e.target;
 
-    voteValue = name === 'up' ? voteValue += 1 : voteValue -= 1;
-    this.props.updateQuestionCounters(id, voteValue, 'votes')
+    this.props.updateQuestionCounters(id, name, 'votes')
       .then((response) => {
         this.setState({ votes: response.votes });
       });
@@ -115,7 +111,7 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <AnswerList question_id={id} />
+          <AnswerListContainer question_id={id} />
         </div>
       </section>
     );

@@ -15,10 +15,10 @@ export default class AnswerList extends Component {
   }
 
   componentDidMount() {
-    this.getAnswers();
+    this.getAnswers('mount');
   }
 
-  getAnswers() {
+  getAnswers(fired) {
     const { question_id } = this.props;
 
     if (question_id) {
@@ -26,6 +26,7 @@ export default class AnswerList extends Component {
       .then(response => {
         response.json()
         .then((answersArray) => {
+          fired !== 'mount' && this.props.updateQuestionCounters(question_id, 'up', 'answers');
           this.setState({ answersArray });
         });
       });
