@@ -130,13 +130,17 @@ router.patch('/questions/:id', (request, response) => {
       if (!question.length) {
         response.status(404).send({ error: 'Invalid Question ID' });
       } else {
-        database('questions').where('id', id)
-          .update({ [counter]: value }, [counter])
-          .then((updatedCounter) => {
-            response.status(200).send(...updatedCounter);
-          })
-          .catch((error) => {
-            response.status(500).send({ error });
+        database('questions').where('id', id).max(counter)
+          .then((currentMax) => {
+            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+            database('questions').where('id', id)
+              .update({ [counter]: newMaxValue }, [counter])
+              .then((updatedCounter) => {
+                response.status(200).send(...updatedCounter);
+              })
+              .catch((error) => {
+                response.status(500).send({ error });
+              });
           });
       }
     });
