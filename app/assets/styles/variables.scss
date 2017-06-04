@@ -2,10 +2,11 @@
 
 $open-sans: 'Open Sans', sans-serif;;
 $white: #FFF;
+$main-background: #c5c5c5;
 $default-grey: #2b2e2e;
 $dark-grey: #3c4040;
 $turing-green: #05c2d1;
-$link-blue: #2196f3;
+$link-color: #f46036;
 $link-hover: #1a78c2;
 
 $normal: 400;
@@ -44,7 +45,39 @@ $input-border-green: 2px solid #05c2d1;
 @mixin markdown-style {
   max-height: 600px;
   max-width: 600px;
-  padding: 3px;
-  border: 1px solid $dark-grey;
+  margin-bottom: 25px;
+  padding: 5px;
+  border: 1px solid $turing-green;
   overflow: auto;
+  background: $white
+}
+
+@mixin btn-styling {
+  display: flex;
+  align-items: center;
+  padding: 3px 3px 3px 6px;
+  background: rgba(5, 194, 209, 0.3);
+  border: 0;
+  color: $dark-grey;
+  text-decoration: none;
+  font-size: 0.7em;
+  font-weight: $bold;
+  transition: all 0.3s;
+  &:after {
+    margin: 0px 0px 0px 10px;
+    display: inline-block;
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #FFF url(../images/right-arrow.svg) no-repeat 6px 5px/0px;
+    background-size: 15px 15px;
+    transition: all 0.3s;
+  }
+  &:hover {
+    background-color:  $turing-green;
+    &:after {
+      margin-left: 30px;
+    }
+  }
 }

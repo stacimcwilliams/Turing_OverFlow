@@ -38,22 +38,24 @@ export default class AnswerList extends Component {
     this.setState({ toggleInput });
   }
 
-
   render() {
-    const { toggleInput } = this.state;
-    const { question_id } = this.props;
+    const { toggleInput, answersArray } = this.state;
+    const { question_id, updateAnswerCounters } = this.props;
+    const answerValue = answersArray.length < 2 ? 'Answer' : 'Answers';
+
     const answersComponents = this.state.answersArray.map(answer => {
-      return <AnswerDetail key={ answer.id } answer={ answer } />;
+      return <AnswerDetail key={ answer.id } answer={ answer } updateAnswerCounters={ updateAnswerCounters } />;
     });
 
     return (
-      <div>
-        <h2>Answers</h2>
+      <div className="answer-list">
+        <h2 className="answer-list-title">{answersArray.length} {answerValue}</h2>
         <section className="answer-list-wrapper">
           { answersComponents }
         </section>
           <Button
-            btnName={'Sumbit a new Answer!'}
+            className="show-answer--btn"
+            btnName={'Add a new Answer'}
             handleClick={() => this.toggleInput() }
           />
           {

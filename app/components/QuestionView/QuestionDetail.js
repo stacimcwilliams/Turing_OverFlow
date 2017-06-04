@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 
 import Button from '../Button';
 import TagLink from '../TagLink';
+import UserVoteDetails from '../UserVoteDetails';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
 import AnswerListContainer from '../../containers/AnswerListContainer';
 
@@ -89,30 +90,14 @@ export default class QuestionDetail extends Component {
           <div className="tags-wrapper">
             { tags }
           </div>
-          <div className="question-info-wrapper">
-            <div className="vote-details-wrapper">
-              <h6>Votes</h6>
-              <div className="vote-btn-wrapper">
-                <Button
-                  className="vote-up"
-                  name="up"
-                  handleClick= { this.handleVotes }
-                />
-                { votes }
-                <Button
-                  className="vote-down"
-                  name="down"
-                  handleClick= { this.handleVotes }
-                />
-              </div>
-            </div>
-            <div className="detail-user-info">
-              <p>asked { created_at }</p>
-              <p>{ user_name }</p>
-            </div>
-          </div>
-          <AnswerListContainer question_id={id} />
+          <UserVoteDetails
+            user_name={ user_name }
+            votes={ votes }
+            handleVotes={ this.handleVotes }
+            created_at={ created_at }
+          />
         </div>
+        <AnswerListContainer question_id={id} />
       </section>
     );
   }

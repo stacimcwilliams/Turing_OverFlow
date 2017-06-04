@@ -146,4 +146,29 @@ router.patch('/questions/:id', (request, response) => {
     });
 });
 
+router.patch('/answers/:id', (request, response) => {
+  const { id } = request.params;
+  const { value } = request.query;
+
+  database('answers').where('id', id).select()
+    .then((answers) => {
+      if (!answers.length) {
+        response.status(404).send({ error: 'Invalid Answer ID' });
+      } else {
+        database('answers').where('id', id).max('votes')
+          .then((currentMax) => {
+            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+            database('answers').where('id', id)
+              .update({ votes: newMaxValue }, ['votes'])
+              .then((updatedCounter) => {
+                response.status(200).send(...updatedCounter);
+              })
+              .catch((error) => {
+                response.status(500).send({ error });
+              });
+          });
+      }
+    });
+});
+
 module.exports = router;

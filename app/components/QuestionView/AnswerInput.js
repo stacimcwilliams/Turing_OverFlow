@@ -72,7 +72,7 @@ export default class AnswerInput extends Component {
         <textarea id="editor" />
         <Button
           className="submit-answer--btn"
-          btnName="Submit answer"
+          btnName="Submit Answer"
           handleClick={ () => this.postAnswer(answer, name) }
         />
       </div>

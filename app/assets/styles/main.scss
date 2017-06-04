@@ -9,18 +9,19 @@
 @import 'AskQuestion';
 @import 'TagLink';
 @import 'AnswerDetail';
+@import 'UserVoteDetails';
 
 body {
-  background: $white;
+  background: lighten($main-background, 20%);
   margin: 0;
   font-family: $open-sans;
   color: default-grey;
 }
 
 a {
-  color: $link-blue;
+  color: $link-color;
   &:visited {
-    color: $link-blue;
+    color: $link-color;
   }
   &:hover {
     color: $link-hover;
