@@ -38,14 +38,13 @@ export default class AnswerList extends Component {
     this.setState({ toggleInput });
   }
 
-
   render() {
     const { toggleInput, answersArray } = this.state;
-    const { question_id } = this.props;
+    const { question_id, updateAnswerCounters } = this.props;
     const answerValue = answersArray.length < 2 ? 'Answer' : 'Answers';
 
     const answersComponents = this.state.answersArray.map(answer => {
-      return <AnswerDetail key={ answer.id } answer={ answer } />;
+      return <AnswerDetail key={ answer.id } answer={ answer } updateAnswerCounters={ updateAnswerCounters } />;
     });
 
     return (
