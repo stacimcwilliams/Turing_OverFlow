@@ -141,6 +141,18 @@ describe('API Routes', () => {
         });
       });
     });
+
+    it('should respond with a 422 warning if a Post is attempted without all the information', (done) => {
+      chai.request(server)
+      .post('/api/v1/questions')
+      .send({
+        title: 'Testing',
+      })
+      .end((error, response) => {
+        response.should.have.status(422);
+        done();
+      });
+    });
   });
 
   describe('POST /api/v1/answers', () => {
