@@ -36,7 +36,7 @@ router.get('/questions/:id', (request, response) => {
 router.get('/answers', (request, response) => {
   database('answers').select()
     .then((answers) => {
-      response.status(200).json(answers);
+      response.status(200).json(convertedAnswers);
     })
     .catch((error) => {
       response.status(500).send({ error });
@@ -45,9 +45,10 @@ router.get('/answers', (request, response) => {
 
 router.get('/answers/:question_id', (request, response) => {
   const { question_id } = request.params
-  database('answers').where({ question_id }).select()
+  database('answers').where({ question_id }).select().orderBy('votes', 'desc')
   .then((answers) => {
-    response.status(200).json(answers);
+    const convertedAnswers = utils.alterTimeStamp(answers);
+    response.status(200).json(convertedAnswers);
   })
   .catch((error) => {
     response.status(500).send({ error });
