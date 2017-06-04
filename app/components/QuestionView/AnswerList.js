@@ -53,7 +53,8 @@ export default class AnswerList extends Component {
           { answersComponents }
         </section>
           <Button
-            btnName={'Sumbit a new Answer!'}
+            className="show-answer--btn"
+            btnName={'Add a new Answer'}
             handleClick={() => this.toggleInput() }
           />
           {
