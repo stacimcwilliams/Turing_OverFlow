@@ -3,7 +3,6 @@ import React from 'react';
 import Button from './Button';
 
 const UserVoteDetails = ({ user_name, votes, created_at, handleVotes }) => {
-
   return (
     <div className="user-vote-info-wrapper">
       <div className="vote-details-wrapper">
@@ -12,13 +11,13 @@ const UserVoteDetails = ({ user_name, votes, created_at, handleVotes }) => {
           <Button
             className="vote-up"
             name="up"
-            handleClick= { handleVotes }
+            handleClick={ handleVotes }
           />
           { votes }
           <Button
             className="vote-down"
             name="down"
-            handleClick= { handleVotes }
+            handleClick={ handleVotes }
           />
         </div>
       </div>
