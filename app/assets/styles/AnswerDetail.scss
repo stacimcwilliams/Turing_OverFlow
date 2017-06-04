@@ -1,6 +1,10 @@
-.answer-detail{
+.answer-list {
   width: 90%;
   margin: 0 auto;
+  .answer-list-title {
+    font-size: 1.4em;
+    margin: 15px 0;
+  }
   .answer-desc-md {
     @include markdown-style;
   }

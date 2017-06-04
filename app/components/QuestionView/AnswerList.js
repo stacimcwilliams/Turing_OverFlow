@@ -40,15 +40,17 @@ export default class AnswerList extends Component {
 
 
   render() {
-    const { toggleInput } = this.state;
+    const { toggleInput, answersArray } = this.state;
     const { question_id } = this.props;
+    const answerValue = answersArray.length < 2 ? 'Answer' : 'Answers';
+
     const answersComponents = this.state.answersArray.map(answer => {
       return <AnswerDetail key={ answer.id } answer={ answer } />;
     });
 
     return (
-      <div>
-        <h2>Answers</h2>
+      <div className="answer-list">
+        <h2 className="answer-list-title">{answersArray.length} {answerValue}</h2>
         <section className="answer-list-wrapper">
           { answersComponents }
         </section>
