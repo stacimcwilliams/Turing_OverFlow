@@ -71,6 +71,16 @@ describe('API Routes', () => {
         done();
       });
     });
+
+    it('GET should return status 404 if id is not in database', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions/60000')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.should.be.json;
+        done();
+      });
+    });
   });
 
   describe('GET /answers', () => {
@@ -101,6 +111,15 @@ describe('API Routes', () => {
         response.body.should.have.length(3);
         response.body[0].should.have.property('id');
         response.body[0].should.have.property('tag');
+        done();
+      });
+    });
+
+    it('should respond with a 404 warning if a GET is requested and there are no tags for that question_id', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions/50000/tags')
+      .end((error, response) => {
+        response.should.have.status(404);
         done();
       });
     });
@@ -141,6 +160,18 @@ describe('API Routes', () => {
         });
       });
     });
+
+    it('should respond with a 422 warning if a Post is attempted without all the information', (done) => {
+      chai.request(server)
+      .post('/api/v1/questions')
+      .send({
+        title: 'Testing',
+      })
+      .end((error, response) => {
+        response.should.have.status(422);
+        done();
+      });
+    });
   });
 
   describe('POST /api/v1/answers', () => {
@@ -167,6 +198,18 @@ describe('API Routes', () => {
           response.body.should.have.length(3);
           done();
         });
+      });
+    });
+
+    it('should respond with a 422 warning if a POST is attempted without all the information', (done) => {
+      chai.request(server)
+      .post('/api/v1/answers')
+      .send({
+        answer: 'Here you go',
+      })
+      .end((error, response) => {
+        response.should.have.status(422);
+        done();
       });
     });
   });
@@ -206,6 +249,19 @@ describe('API Routes', () => {
         response.should.have.status(200);
         response.body.should.be.a('object');
         response.body.votes.should.equal(5);
+        done();
+      });
+    });
+
+    it('should respond with a 404 warning if a PATCH is attempted with an incorrect question id', (done) => {
+      chai.request(server)
+      .patch('/api/v1/questions/500000')
+      .query({
+        value: 'test',
+        counter: 'votes',
+      })
+      .end((error, response) => {
+        response.should.have.status(404);
         done();
       });
     });
