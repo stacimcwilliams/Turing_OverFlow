@@ -191,13 +191,22 @@ describe('API Routes', () => {
   describe('PATCH /api/v1/questions/:id/votes', () => {
     it('should be able to PATCH a specific vote', (done) => {
       chai.request(server)
-      .patch('/api/v1/questions/1000/votes')
-      .send({
-        votes: 
+      .get('/api/v1/questions/1000')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body[0].votes.should.equal(4);
+      });
+      chai.request(server)
+      .patch('/api/v1/questions/1000')
+      .query({
+        value: 'up',
+        counter: 'votes',
       })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.votes.should.equal(5);
+        done();
       });
     });
   });

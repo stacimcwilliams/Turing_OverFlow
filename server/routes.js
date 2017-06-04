@@ -44,7 +44,7 @@ router.get('/answers', (request, response) => {
 });
 
 router.get('/answers/:question_id', (request, response) => {
-  const { question_id } = request.params
+  const { question_id } = request.params;
   database('answers').where({ question_id }).select()
   .then((answers) => {
     response.status(200).json(answers);
