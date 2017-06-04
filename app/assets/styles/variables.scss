@@ -45,9 +45,11 @@ $input-border-green: 2px solid #05c2d1;
 @mixin markdown-style {
   max-height: 600px;
   max-width: 600px;
-  padding: 3px;
-  border: 1px solid $dark-grey;
+  margin-bottom: 25px;
+  padding: 5px;
+  border: 1px solid $turing-green;
   overflow: auto;
+  background: $white
 }
 
 @mixin btn-styling {
@@ -67,6 +69,7 @@ $input-border-green: 2px solid #05c2d1;
     content: "";
     width: 25px;
     height: 25px;
+    border-radius: 50%;
     background: #FFF url(../images/right-arrow.svg) no-repeat 6px 5px/0px;
     background-size: 15px 15px;
     transition: all 0.3s;

@@ -35,21 +35,10 @@
 	&:after {
 		transform: rotate(90deg)
 	}
-	// &:hover {
-	// 	&:after {
-	// 		margin-left: 128px;
-	// 	}
-	// }
 }
 
 .submit-answer--btn {
 	max-width: 300px;
 	@include btn-styling;
 	float: right;
-	// &:hover {
-	// 	background-color:  $turing-green;
-	// 	&:after {
-	// 		margin-left: 170px;
-	// 	}
-	// }
 }

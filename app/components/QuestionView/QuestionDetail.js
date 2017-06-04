@@ -111,8 +111,8 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <AnswerListContainer question_id={id} />
         </div>
+        <AnswerListContainer question_id={id} />
       </section>
     );
   }

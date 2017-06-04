@@ -1,11 +1,18 @@
 .question-desc-wrapper {
   width: 90%;
   margin: 0 auto;
+  padding-bottom: 50px;
+  border-bottom: 1px solid $dark-grey;
   .question-desc-md {
     @include markdown-style;
   }
+  .question-desc-title {
+    font-size: 1.4em;
+    margin: 15px 0;
+  }
   .detail-user-info {
     font-size: 0.7em;
+    margin-right: 5px;
     p {
       text-align: right;
     }
@@ -14,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: lighten($turing-green, 70%);
   }
   .vote-details-wrapper {
     display: flex;
