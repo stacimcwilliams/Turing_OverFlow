@@ -121,21 +121,26 @@ router.post('/questions', (request, response) => {
   });
 });
 
-router.patch('/questions/:id/votes', (request, response) => {
+router.patch('/questions/:id', (request, response) => {
   const { id } = request.params;
-  const { value } = request.query;
+  const { counter, value } = request.query;
+
   database('questions').where('id', id).select()
     .then((question) => {
       if (!question.length) {
         response.status(404).send({ error: 'Invalid Question ID' });
       } else {
-        database('questions').where('id', id)
-          .update({ votes: value }, ['votes'])
-          .then((updatedVote) => {
-            response.status(200).send(...updatedVote);
-          })
-          .catch((error) => {
-            response.status(500).send({ error });
+        database('questions').where('id', id).max(counter)
+          .then((currentMax) => {
+            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+            database('questions').where('id', id)
+              .update({ [counter]: newMaxValue }, [counter])
+              .then((updatedCounter) => {
+                response.status(200).send(...updatedCounter);
+              })
+              .catch((error) => {
+                response.status(500).send({ error });
+              });
           });
       }
     });

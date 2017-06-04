@@ -4,8 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import Button from '../Button';
 import TagLink from '../TagLink';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
-import AnswerList from './AnswerList';
-// import AnswerDetailContainer from '../../containers/AnswerDetailContainer'
+import AnswerListContainer from '../../containers/AnswerListContainer';
 
 export default class QuestionDetail extends Component {
   constructor() {
@@ -26,7 +25,7 @@ export default class QuestionDetail extends Component {
     this.handleVotes = this.handleVotes.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { questions, id } = this.props;
     if (questions) {
       const q = questions.find((q) => {
@@ -34,6 +33,7 @@ export default class QuestionDetail extends Component {
       });
       this.fetchTags(q.id);
       this.setState(q);
+      this.updateQuestionViews(q.id);
       // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
     } else {
       // fetch the specific question
@@ -52,17 +52,22 @@ export default class QuestionDetail extends Component {
       });
   }
 
+  updateQuestionViews(id) {
+    this.props.updateQuestionCounters(id, 'up', 'views')
+    .then((response) => {
+      this.setState({ views: response.views });
+    });
+  }
+
   renderTags() {
     return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
   }
 
   handleVotes(e) {
-    const { id, votes } = this.state;
-    let voteValue = votes;
+    const { id } = this.state;
     const { name } = e.target;
 
-    voteValue = name === 'up' ? voteValue += 1 : voteValue -= 1;
-    this.props.updateQuestionVote(id, voteValue)
+    this.props.updateQuestionCounters(id, name, 'votes')
       .then((response) => {
         this.setState({ votes: response.votes });
       });
@@ -70,7 +75,7 @@ export default class QuestionDetail extends Component {
 
   render() {
     const { title, question, user_name, answers, views, votes, created_at } = this.state;
-    let id = this.state.id || this.props.id;
+    const id = this.state.id || this.props.id;
     const tags = this.renderTags();
 
     return (
@@ -106,7 +111,7 @@ export default class QuestionDetail extends Component {
               <p>{ user_name }</p>
             </div>
           </div>
-          <AnswerList question_id={id} />
+          <AnswerListContainer question_id={id} />
         </div>
       </section>
     );
