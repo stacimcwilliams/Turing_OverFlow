@@ -8,4 +8,7 @@
   .answer-desc-md {
     @include markdown-style;
   }
+  .answer-detail {
+    padding-bottom: 25px;
+  }
 }
