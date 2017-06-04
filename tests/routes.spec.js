@@ -209,5 +209,18 @@ describe('API Routes', () => {
         done();
       });
     });
+
+    it('should respond with a 404 warning if a PATCH is attempted with an incorrect question id', (done) => {
+      chai.request(server)
+      .patch('/api/v1/questions/500000')
+      .query({
+        value: 'test',
+        counter: 'votes',
+      })
+      .end((error, response) => {
+        response.should.have.status(404);
+        done();
+      });
+    });
   });
 });
