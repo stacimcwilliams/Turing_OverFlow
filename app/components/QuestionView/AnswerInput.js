@@ -42,12 +42,12 @@ export default class AnswerInput extends Component {
   }
 
   postAnswer(answer, name) {
-    const { question_id, refreshAnswers } = this.props
+    const { question_id, refreshAnswers } = this.props;
     const valuesEntered = this.inputChecker();
     if (valuesEntered.length === 2) {
       this.props.addAnswer(question_id, answer, name)
         .then((response) => {
-          refreshAnswers()
+          refreshAnswers();
         });
     }
   }
