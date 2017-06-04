@@ -8,7 +8,7 @@ const Button = ({ handleClick, className, name, btnName }) => {
       onClick={ (e) => handleClick(e) }>
       { btnName }
     </button>
-  )
-}
+  );
+};
 
 export default Button;

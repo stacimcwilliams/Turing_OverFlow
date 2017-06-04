@@ -42,9 +42,9 @@ export default class QuestionDetail extends Component {
     }
   }
 
-  fetchQuestion() {
-    //return fetch(ble bla)
-  }
+  // fetchQuestion() {
+  //   //return fetch(ble bla)
+  // }
 
   fetchTags(id) {
     this.props.fetchQuestionTags(id)
