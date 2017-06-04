@@ -124,7 +124,6 @@ router.post('/questions', (request, response) => {
 router.patch('/questions/:id/votes', (request, response) => {
   const { id } = request.params;
   const { value } = request.query;
-  console.log(id, value);
   database('questions').where('id', id).select()
     .then((question) => {
       if (!question.length) {

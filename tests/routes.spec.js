@@ -175,7 +175,7 @@ describe('API Routes', () => {
     it('should return an answer by question_id', (done) => {
       chai.request(server)
       .get('/api/v1/answers/1001')
-      .end((error, response) => 
+      .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('array');
         response.body.should.have.length(1);
@@ -184,6 +184,20 @@ describe('API Routes', () => {
         response.body[0].should.have.property('user_name');
         response.body[0].should.have.property('votes');
         done();
+      });
+    });
+  });
+
+  describe('PATCH /api/v1/questions/:id/votes', () => {
+    it('should be able to PATCH a specific vote', (done) => {
+      chai.request(server)
+      .patch('/api/v1/questions/1000/votes')
+      .send({
+        votes: 
+      })
+      .end((error, response) => {
+        console.log(response.body);
+        response.should.have.status(200);
       });
     });
   });
