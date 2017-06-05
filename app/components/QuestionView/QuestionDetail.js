@@ -95,6 +95,7 @@ export default class QuestionDetail extends Component {
             votes={ votes }
             handleVotes={ this.handleVotes }
             created_at={ created_at }
+            details={'asked'}
           />
         </div>
         <AnswerListContainer question_id={id} />
