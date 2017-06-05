@@ -23,19 +23,22 @@ export default class SearchResults extends Component {
   componentWillMount() {
     const { searchResults: { searchTerm, resultsArray }, searchTermMatch, fetchSearch } = this.props
 
-    if (!searchTerm || !(searchTerm === searchTermMatch)) {
-      fetchSearch(searchTermMatch).then(() => {
-        console.log('Searching for', searchTermMatch)
-        // this.forceUpdate()
-      })
+    if ((!searchTerm || !(searchTerm === searchTermMatch)) && searchTermMatch) {
+      fetchSearch(searchTermMatch)
     }
   }
 
   render() {
     const questionResults = this.renderQuestions()
+    console.log('HERE ARE RESULTS', questionResults)
     return (
       <div className="search-results">
-        {questionResults}
+        <h1> Search results </h1>
+        {
+          questionResults.length ? 
+          questionResults :
+          <p>No results found</p>
+        }
       </div>
     );
   }

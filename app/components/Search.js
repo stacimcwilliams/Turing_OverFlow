@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Button from './Button';
 import { Link } from 'react-router-dom';
+import Alert from 'react-s-alert';
+
+import Button from './Button';
 
 export default class Search extends Component {
   constructor() {
@@ -17,7 +19,11 @@ export default class Search extends Component {
     const { searchTerm } = this.state
     const { fetchSearch, history } = this.props
 
-    fetchSearch(searchTerm).then(() => history.push(`/search/${searchTerm}`))
+    if( searchTerm ) {
+      fetchSearch(searchTerm).then(() => history.push(`/search/${searchTerm}`))
+    } else {
+      Alert.error(`Please enter a term to search`);
+    }
 
   }
 
