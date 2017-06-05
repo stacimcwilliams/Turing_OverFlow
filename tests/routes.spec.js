@@ -309,6 +309,7 @@ describe('API Routes', () => {
     });
   });
 
+
   describe('GET /api/v1/search/:searchTerm', () => {
     it('should filter by search params', (done) => {
       chai.request(server)

@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
     noInfo: true,
     publicPath: config.output.publicPath,
   }));
-}
+  }
 
 app.use(express.static('public'));
 
