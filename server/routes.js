@@ -18,6 +18,17 @@ router.get('/questions', (request, response) => {
   });
 });
 
+router.get('/questions/popular', (request, response) => {
+  database('questions').select().orderBy('views', 'desc').limit(5)
+  .then((questions) => {
+    const convertedQuestions = utils.alterTimeStamp(questions);
+    response.status(200).json(convertedQuestions);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
+});
+
 router.get('/questions/:id', (request, response) => {
   const { id } = request.params;
   database('questions').select().where('id', id)
