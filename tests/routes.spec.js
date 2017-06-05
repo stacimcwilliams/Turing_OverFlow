@@ -253,6 +253,49 @@ describe('API Routes', () => {
       });
     });
 
+    it('should be able to PATCH a specific answer', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions/1000')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body[0].answers.should.equal(1);
+      });
+      chai.request(server)
+      .patch('/api/v1/questions/1000')
+      .query({
+        value: 'up',
+        counter: 'answers',
+      })
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.answers.should.equal(2);
+        done();
+      });
+    });
+
+    it('should be able to PATCH a specific views', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions/1000')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body[0].views.should.equal(11);
+      });
+      chai.request(server)
+      .patch('/api/v1/questions/1000')
+      .query({
+        value: 'up',
+        counter: 'views',
+      })
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.views.should.equal(12);
+        done();
+      });
+    });
+
+
     it('should respond with a 404 warning if a PATCH is attempted with an incorrect question id', (done) => {
       chai.request(server)
       .patch('/api/v1/questions/500000')
