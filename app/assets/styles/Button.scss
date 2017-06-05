@@ -31,6 +31,8 @@
 }
 
 .show-answer--btn {
+	float: right;
+	margin: 20px 10px 0 0;
 	@include btn-styling;
 	&:after {
 		transform: rotate(90deg)

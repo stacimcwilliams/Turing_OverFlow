@@ -1,7 +1,14 @@
 .ask-question-wrapper {
-  padding: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
   .ask-question-header {
-    margin: 0 0 10px 0;
+    margin: 10px 0;
     font-size: 1.4em;
   }
   .submit-question--btn {
