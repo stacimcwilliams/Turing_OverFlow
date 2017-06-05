@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
-    publicPath: './assets/styles/main',
+    publicPath: '/',
   },
 
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
       },
     }),
   ],
@@ -40,7 +40,7 @@ module.exports = {
       { test: /\.png$/,
         loader: 'file' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file' }
+        loader: 'file' },
     ],
   },
 };
