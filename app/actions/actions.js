@@ -80,27 +80,21 @@ export const addAnswer = (question_id, answer, name) => {
 };
 
 const searchResults = (searchResults) => {
-  console.log('action searchResults', searchResults)
   return {
     type: 'ADD_SEARCH_RESULTS',
     searchResults,
   };
-}
+};
 
 export const fetchSearch = (searchTerm) => {
   // check on spaces here, may need conversion
-  console.log('searching for', searchTerm)
   return dispatch => {
     return fetch(`/api/v1/search/${searchTerm}`)
     .then((response) => {
-      console.log('got response', response)
       response.json()
       .then((json) => {
-        console.log('json is an array', json)
-        dispatch(searchResults({ searchTerm, resultsArray:json }))
-      })
-    })
-
-  } 
-}
-
+        dispatch(searchResults({ searchTerm, resultsArray: json }));
+      });
+    });
+  };
+};

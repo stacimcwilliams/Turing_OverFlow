@@ -6,7 +6,7 @@ import searchResults from './searchReducer';
 
 const appReducer = combineReducers({
   questions,
-  searchResults
+  searchResults,
 });
 
 const rootReducer = (state, action) => {

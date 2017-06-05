@@ -45,7 +45,11 @@ export default class AnswerList extends Component {
     const answerValue = answersArray.length < 2 ? 'Answer' : 'Answers';
 
     const answersComponents = this.state.answersArray.map(answer => {
-      return <AnswerDetail key={ answer.id } answer={ answer } updateAnswerCounters={ updateAnswerCounters } />;
+      return <AnswerDetail
+        key={ answer.id }
+        answer={ answer }
+        updateAnswerCounters={ updateAnswerCounters }
+      />;
     });
 
     return (
