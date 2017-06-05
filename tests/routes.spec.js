@@ -308,4 +308,22 @@ describe('API Routes', () => {
       });
     });
   });
+
+
+  describe('GET /api/v1/search/:searchTerm', () => {
+    it('should filter by search params', (done) => {
+      chai.request(server)
+      .get('/api/v1/questions')
+      .end((error, response) => {
+        response.body.should.have.length(2);
+      });
+      chai.request(server)
+      .get('/api/v1/search/random')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.have.length(1);
+        done();
+      });
+    });
+  });
 });
