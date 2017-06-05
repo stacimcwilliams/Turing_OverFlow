@@ -19,7 +19,7 @@ router.get('/questions', (request, response) => {
 });
 
 router.get('/questions/popular', (request, response) => {
-  database('questions').select().orderBy('views', 'desc').limit(5)
+  database('questions').select().orderBy('views', 'desc').limit(10)
   .then((questions) => {
     const convertedQuestions = utils.alterTimeStamp(questions);
     response.status(200).json(convertedQuestions);
