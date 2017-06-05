@@ -4,7 +4,7 @@ const searchResults = (state = { resultsArray: [] }, action) => {
       return action.searchResults;
 
     default:
-      return state;	
+      return state;
   }
 };
 

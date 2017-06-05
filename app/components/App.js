@@ -12,8 +12,6 @@ import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
 import SearchResultsContainer from '../containers/SearchResultsContainer';
 
-
-
 const App = ({ history }) => {
   return (
     <div>
@@ -25,7 +23,7 @@ const App = ({ history }) => {
       }}
       />
       <Route path="/search/:searchTerm" render={ ({ match }) => {
-        return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />
+        return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />;
       }}/>
       <Alert
         stack={{ limit: 5 }}

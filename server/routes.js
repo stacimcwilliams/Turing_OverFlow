@@ -35,12 +35,12 @@ router.get('/questions/:id', (request, response) => {
 
 router.get('/answers', (request, response) => {
   database('answers').select()
-    .then((answers) => {
-      response.status(200).json(answers);
-    })
-    .catch((error) => {
-      response.status(500).send({ error });
-    });
+  .then((answers) => {
+    response.status(200).json(answers);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
 });
 
 router.get('/answers/:question_id', (request, response) => {
@@ -127,30 +127,31 @@ router.patch('/questions/:id', (request, response) => {
   const { counter, value } = request.query;
 
   database('questions').where('id', id).select()
-    .then((question) => {
-      if (!question.length) {
-        response.status(404).send({ error: 'Invalid Question ID' });
-      } else {
-        database('questions').where('id', id).max(counter)
-          .then((currentMax) => {
-            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
-            database('questions').where('id', id)
-              .update({ [counter]: newMaxValue }, [counter])
-              .then((updatedCounter) => {
-                response.status(200).send(...updatedCounter);
-              })
-              .catch((error) => {
-                response.status(500).send({ error });
-              });
-          });
-      }
-    });
+  .then((question) => {
+    if (!question.length) {
+      response.status(404).send({ error: 'Invalid Question ID' });
+    } else {
+      database('questions').where('id', id).max(counter)
+      .then((currentMax) => {
+        const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+        database('questions').where('id', id)
+        .update({ [counter]: newMaxValue }, [counter])
+        .then((updatedCounter) => {
+          response.status(200).send(...updatedCounter);
+        })
+        .catch((error) => {
+          response.status(500).send({ error });
+        });
+      });
+    }
+  });
 });
 
 router.get('/search/:searchTerm', (request, response) => {
   // what about tags?
   // ILIKE is case-insensitve LIKE, postgres only
   const { searchTerm } = request.params;
+
   database('questions')
   .where('question', 'ILIKE', `%${searchTerm}%`)
   .orWhere('title', 'ILIKE', `%${searchTerm}%`)
@@ -167,24 +168,24 @@ router.patch('/answers/:id', (request, response) => {
   const { value } = request.query;
 
   database('answers').where('id', id).select()
-    .then((answers) => {
-      if (!answers.length) {
-        response.status(404).send({ error: 'Invalid Answer ID' });
-      } else {
-        database('answers').where('id', id).max('votes')
-          .then((currentMax) => {
-            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
-            database('answers').where('id', id)
-              .update({ votes: newMaxValue }, ['votes'])
-              .then((updatedCounter) => {
-                response.status(200).send(...updatedCounter);
-              })
-              .catch((error) => {
-                response.status(500).send({ error });
-              });
-          });
-      }
-    });
+  .then((answers) => {
+    if (!answers.length) {
+      response.status(404).send({ error: 'Invalid Answer ID' });
+    } else {
+      database('answers').where('id', id).max('votes')
+      .then((currentMax) => {
+        const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+        database('answers').where('id', id)
+        .update({ votes: newMaxValue }, ['votes'])
+        .then((updatedCounter) => {
+          response.status(200).send(...updatedCounter);
+        })
+        .catch((error) => {
+          response.status(500).send({ error });
+        });
+      });
+    }
+  });
 });
 
 module.exports = router;
