@@ -36,7 +36,7 @@ router.get('/questions/:id', (request, response) => {
 router.get('/answers', (request, response) => {
   database('answers').select()
     .then((answers) => {
-      response.status(200).json(convertedAnswers);
+      response.status(200).json(answers);
     })
     .catch((error) => {
       response.status(500).send({ error });
