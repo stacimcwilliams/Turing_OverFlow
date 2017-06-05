@@ -7,10 +7,11 @@ const fetchAllQuestionsAction = (questions) => {
   };
 };
 
-const fetchPopularQuestionsAction = (questions) => {
+const fetchPopularQuestionsAction = (popularQuestions) => {
+  console.log('FETCH', popularQuestions);
   return {
     type: 'FETCH_POPULAR_QUESTIONS',
-    questions,
+    popularQuestions,
   };
 };
 

@@ -7,6 +7,7 @@ export default class Dashboard extends Component {
 
   componentWillMount() {
     this.props.fetchAllQuestions();
+    this.props.fetchPopularQuestions();
   }
 
   renderQuestions() {
