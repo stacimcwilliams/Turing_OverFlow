@@ -52,22 +52,21 @@ describe('API Routes', () => {
   });
 
   describe('GET /questions/:id', () => {
-    it('should return all questions', (done) => {
+    it('should return a question by id', (done) => {
       chai.request(server)
       .get('/api/v1/questions/1001')
       .end((error, response) => {
         response.should.have.status(200);
         response.should.be.json;
-        response.body.should.be.a('array');
-        response.body.should.have.length(1);
-        response.body[0].should.have.property('id');
-        response.body[0].should.have.property('title');
-        response.body[0].should.have.property('question');
-        response.body[0].should.have.property('user_name');
-        response.body[0].should.have.property('views');
-        response.body[0].should.have.property('answers');
-        response.body[0].should.have.property('votes');
-        response.body[0].title.should.equal('How do I convert a number to a string in JavaScript?');
+        response.body.should.be.a('object');
+        response.body.id.should.equal(1001);
+        response.body.title.should.equal('How do I convert a number to a string in JavaScript?');
+        response.body.question.should.equal('I\'m trying to find the best way to convert a number to a string in JavaScript. Any thoughts would be great.');
+        response.body.user_name.should.equal('Staci McWilliams');
+        response.body.views.should.equal(15);
+        response.body.answers.should.equal(1);
+        response.body.votes.should.equal(7);
+        response.body.title.should.equal('How do I convert a number to a string in JavaScript?');
         done();
       });
     });
@@ -138,17 +137,17 @@ describe('API Routes', () => {
       .end((error, response) => {
         response.should.have.status(201);
         response.body.should.be.a('object');
-        response.body.should.have.property('id');
-        response.body.should.have.property('title');
-        response.body.should.have.property('question');
-        response.body.should.have.property('user_name');
+        response.body.id.should.equal(1);
+        response.body.title.should.equal('Where do you put the script tag for JavaScript?');
+        response.body.question.should.equal('Where is the correct place to put the JavaScript tag in the HTML file?');
+        response.body.user_name.should.equal('Kyle Zucker');
         chai.request(server)
         .get('/api/v1/questions/1')
         .end((err, response) => {
           response.should.have.status(200);
           response.should.be.json;
-          response.body.should.be.a('array');
-          response.body[0].title.should.equal('Where do you put the script tag for JavaScript?');
+          response.body.should.be.a('object');
+          response.body.title.should.equal('Where do you put the script tag for JavaScript?');
           chai.request(server)
           .get('/api/v1/questions/1/tags')
           .end((err, response) => {
@@ -237,7 +236,7 @@ describe('API Routes', () => {
       .get('/api/v1/questions/1000')
       .end((error, response) => {
         response.should.have.status(200);
-        response.body[0].votes.should.equal(4);
+        response.body.votes.should.equal(4);
       });
       chai.request(server)
       .patch('/api/v1/questions/1000')
@@ -258,7 +257,7 @@ describe('API Routes', () => {
       .get('/api/v1/questions/1000')
       .end((error, response) => {
         response.should.have.status(200);
-        response.body[0].answers.should.equal(1);
+        response.body.answers.should.equal(1);
       });
       chai.request(server)
       .patch('/api/v1/questions/1000')
@@ -279,7 +278,7 @@ describe('API Routes', () => {
       .get('/api/v1/questions/1000')
       .end((error, response) => {
         response.should.have.status(200);
-        response.body[0].views.should.equal(11);
+        response.body.views.should.equal(11);
       });
       chai.request(server)
       .patch('/api/v1/questions/1000')
