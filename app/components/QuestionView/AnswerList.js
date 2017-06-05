@@ -12,6 +12,7 @@ export default class AnswerList extends Component {
       answersArray: [],
       toggleInput: false,
     };
+    this.toggleInput = this.toggleInput.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +50,7 @@ export default class AnswerList extends Component {
 
     return (
       <div className="answer-list">
-        <h2 className="answer-list-title">{answersArray.length} {answerValue}</h2>
+        { answersArray.length > 0 && <h2 className="answer-list-title">{answersArray.length} {answerValue}</h2> }
         <section className="answer-list-wrapper">
           { answersComponents }
         </section>
@@ -62,6 +63,7 @@ export default class AnswerList extends Component {
             toggleInput &&
             <AnswerInputContainer
               refreshAnswers={ () => this.getAnswers() }
+              toggleInput={ this.toggleInput }
               question_id={ question_id }
             />
           }

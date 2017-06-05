@@ -21,7 +21,7 @@ $input-border-green: 2px solid #05c2d1;
 @mixin ask-question-input-wrappers {
   display: flex;
   margin: 10px auto;
-  padding: 5px;
+  padding: 5px 0;
   max-width: 600px;
 }
 
@@ -53,10 +53,30 @@ $input-border-green: 2px solid #05c2d1;
   background: $white
 }
 
+@mixin editor-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  .ask-question-header {
+    margin: 10px 0;
+    font-size: 1.4em;
+  }
+  .submit-question--btn {
+    max-width: 300px;
+    @include btn-styling;
+    float: right;
+  }
+}
+
 @mixin btn-styling {
   display: flex;
   align-items: center;
-  padding: 3px 3px 3px 6px;
+  padding: 5px 6px 5px 6px;
   background: rgba(5, 194, 209, 0.3);
   border: 0;
   color: $dark-grey;
@@ -77,6 +97,8 @@ $input-border-green: 2px solid #05c2d1;
   }
   &:hover {
     background-color:  $turing-green;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     &:after {
       margin-left: 30px;
     }

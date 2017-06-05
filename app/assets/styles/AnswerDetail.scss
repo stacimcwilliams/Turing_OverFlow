@@ -1,3 +1,7 @@
+.supply-answer-wrapper {
+  @include editor-wrapper;
+}
+
 .answer-list {
   width: 90%;
   max-width: 600px;

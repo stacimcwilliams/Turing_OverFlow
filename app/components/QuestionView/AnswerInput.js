@@ -42,11 +42,12 @@ export default class AnswerInput extends Component {
   }
 
   postAnswer(answer, name) {
-    const { question_id, refreshAnswers } = this.props;
+    const { question_id, refreshAnswers, toggleInput } = this.props;
     const valuesEntered = this.inputChecker();
     if (valuesEntered.length === 2) {
       this.props.addAnswer(question_id, answer, name)
         .then((response) => {
+          toggleInput();
           refreshAnswers();
         });
     }
@@ -56,7 +57,7 @@ export default class AnswerInput extends Component {
     const { question, answer, name } = this.state;
 
     return (
-      <div className="ask-question-wrapper">
+      <div className="supply-answer-wrapper">
         <h2 className="ask-question-header">Submit Answer</h2>
         <div className="user-name-wrapper">
           <label>User</label>
