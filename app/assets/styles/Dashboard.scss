@@ -8,6 +8,9 @@
   .add-question-link {
     @include btn-styling;
   }
+  .dashboard-questions-wrapper {
+    max-width: 600px;
+  }
   .dashboard-header-container{
     display: flex;
     justify-content: space-between;

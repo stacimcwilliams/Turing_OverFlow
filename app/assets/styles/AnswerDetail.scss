@@ -1,14 +1,22 @@
 .answer-list {
   width: 90%;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 20px auto;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
   .answer-list-title {
     font-size: 1.4em;
-    margin: 15px 0;
+    margin-bottom: 15px;
   }
   .answer-desc-md {
     @include markdown-style;
   }
   .answer-detail {
-    padding-bottom: 25px;
+    margin-top: 30px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #3c4040;
   }
 }
