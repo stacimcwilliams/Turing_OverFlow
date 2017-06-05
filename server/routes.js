@@ -151,11 +151,16 @@ router.get('/search/:searchTerm', (request, response) => {
   // what about tags?
   // ILIKE is case-insensitve LIKE, postgres only
   const { searchTerm } = request.params;
+
   database('questions')
   .where('question', 'ILIKE', `%${searchTerm}%`)
   .orWhere('title', 'ILIKE', `%${searchTerm}%`)
   .then(results => {
-    response.status(200).json(results);
+    if (!results.length) {
+      response.status(404).send({ error: 'No results found' });
+    } else {
+      response.status(200).json(results);
+    }
   })
   .catch(error => {
     response.status(500).send({ error });
