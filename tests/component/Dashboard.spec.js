@@ -12,11 +12,12 @@ import Dashboard from "../../app/components/MainView/Dashboard.js"
 
 
 describe('Dashboard testing', () => {
-  it('connects', () => {
+  it('dashboard existence', () => {
   	const spy = sinon.spy()
     const w = shallow(<Dashboard fetchAllQuestions={spy} questions= {[]}/>)
 
     expect(w.find('.dashboard').length, 1).equal(1)
+    expect(w.find('Link').length, 1).equal(1)
   })
 })
 
