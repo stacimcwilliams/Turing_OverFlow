@@ -59,6 +59,7 @@ export default class AskQuestion extends Component {
 
   tagChecker() {
     const { tags } = this.state;
+
     if (tags < 1 || tags > 5) {
       Alert.error('Please add between 1 and 5 tags to the question');
       return false;
@@ -69,10 +70,11 @@ export default class AskQuestion extends Component {
   postQuestion(title, question, name, tags) {
     const valuesEntered = this.inputChecker();
     const tagsChecker = this.tagChecker();
+
     if (valuesEntered.length === 3 && tagsChecker) {
       this.props.addQuestion(title, question, name, tags)
         .then((response) => {
-          console.log('postQuestion', response);
+          this.props.history.push(`/question/${response.id}`);
         });
     }
   }

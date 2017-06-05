@@ -18,6 +18,14 @@ export const fetchAllQuestions = () => {
   });
 };
 
+export const fetchQuestion = (id) => {
+  return () =>
+  fetch(`/api/v1/questions/${id}`)
+  .then(response =>
+    response.json(),
+  );
+};
+
 export const fetchQuestionTags = (id) => {
   return () =>
   fetch(`/api/v1/questions/${id}/tags`)
