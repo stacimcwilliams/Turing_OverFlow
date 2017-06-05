@@ -8,8 +8,7 @@
     "build": "webpack --config ./webpack.prod.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
     "test": "mocha tests/* --no-timeouts",
-    "lint": "eslint .",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
