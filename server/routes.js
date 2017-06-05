@@ -156,11 +156,7 @@ router.get('/search/:searchTerm', (request, response) => {
   .where('question', 'ILIKE', `%${searchTerm}%`)
   .orWhere('title', 'ILIKE', `%${searchTerm}%`)
   .then(results => {
-    if (!results.length) {
-      response.status(404).send({ error: 'No results found' });
-    } else {
-      response.status(200).json(results);
-    }
+    response.status(200).json(results);
   })
   .catch(error => {
     response.status(500).send({ error });

@@ -325,13 +325,4 @@ describe('API Routes', () => {
       });
     });
   });
-
-  it('should respond with a 404 error if no matching search results are found', (done) => {
-    chai.request(server)
-    .get('/api/v1/search/bananas')
-    .end((error, response) => {
-      response.should.have.status(404);
-      done()
-    });
-  });
 });
