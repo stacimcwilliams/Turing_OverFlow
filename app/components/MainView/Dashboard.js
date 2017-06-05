@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import TagLink from '../TagLink';
 import PopularQuestions from './PopularQuestions';
 import MainQuestionContainer from '../../containers/MainQuestionContainer';
 
@@ -9,6 +10,7 @@ export default class Dashboard extends Component {
   componentWillMount() {
     this.props.fetchAllQuestions();
     this.props.fetchPopularQuestions();
+    this.props.fetchRecentTags();
   }
 
   renderQuestions() {
@@ -28,9 +30,14 @@ export default class Dashboard extends Component {
     });
   }
 
+  renderTags() {
+    return this.props.recentTags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+  }
+
   render() {
     const questions = this.renderQuestions();
     const popularQuestions = this.renderPopularQuestions();
+    const recentTags = this.renderTags();
     return (
       <section className="dashboard">
         <div className="dashboard-questions-wrapper">
@@ -46,6 +53,12 @@ export default class Dashboard extends Component {
           </div>
           <div className="popular-questions-wrapper">
             { popularQuestions }
+          </div>
+          <div className='dashboard-header-container'>
+            <h2 className="dashboard-header">Recent Tags</h2>
+          </div>
+          <div className="popular-questions-wrapper">
+            { recentTags }
           </div>
         </div>
       </section>
