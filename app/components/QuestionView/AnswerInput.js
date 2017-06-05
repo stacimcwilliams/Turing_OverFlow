@@ -42,12 +42,12 @@ export default class AnswerInput extends Component {
   }
 
   postAnswer(answer, name) {
-    const { question_id, refreshAnswers } = this.props
+    const { question_id, refreshAnswers } = this.props;
     const valuesEntered = this.inputChecker();
     if (valuesEntered.length === 2) {
       this.props.addAnswer(question_id, answer, name)
         .then((response) => {
-          refreshAnswers()
+          refreshAnswers();
         });
     }
   }
@@ -72,7 +72,7 @@ export default class AnswerInput extends Component {
         <textarea id="editor" />
         <Button
           className="submit-answer--btn"
-          btnName="Submit answer"
+          btnName="Submit Answer"
           handleClick={ () => this.postAnswer(answer, name) }
         />
       </div>

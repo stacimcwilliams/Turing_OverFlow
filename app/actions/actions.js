@@ -49,6 +49,16 @@ export const updateQuestionCounters = (id, direction, counter) => {
     );
 };
 
+export const updateAnswerCounters = (id, direction) => {
+  return () =>
+    fetch(`/api/v1/answers/${id}?value=${direction}`, {
+      method: 'PATCH',
+    })
+    .then(response =>
+      response.json(),
+    );
+};
+
 export const addAnswer = (question_id, answer, name) => {
   return () =>
     fetch('/api/v1/answers', {
@@ -64,6 +74,7 @@ export const addAnswer = (question_id, answer, name) => {
 const searchResults = (searchResults) => {
   return {
     type: 'ADD_SEARCH_RESULTS',
+    // serachTerm
     searchResults,
   };
 }

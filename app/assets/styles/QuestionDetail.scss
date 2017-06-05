@@ -1,31 +1,13 @@
 .question-desc-wrapper {
   width: 90%;
   margin: 0 auto;
+  padding-bottom: 50px;
+  border-bottom: 1px solid $dark-grey;
   .question-desc-md {
     @include markdown-style;
   }
-  .detail-user-info {
-    font-size: 0.7em;
-    p {
-      text-align: right;
-    }
-  }
-  .question-info-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .vote-details-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    h6 {
-      margin: 0;
-    }
-    .vote-btn-wrapper {
-      display: flex;
-      align-items: center;
-      margin: 5px 0;
-    }
+  .question-desc-title {
+    font-size: 1.4em;
+    margin: 15px 0;
   }
 }

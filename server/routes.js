@@ -36,7 +36,7 @@ router.get('/questions/:id', (request, response) => {
 router.get('/answers', (request, response) => {
   database('answers').select()
     .then((answers) => {
-      response.status(200).json(answers);
+      response.status(200).json(convertedAnswers);
     })
     .catch((error) => {
       response.status(500).send({ error });
@@ -44,10 +44,11 @@ router.get('/answers', (request, response) => {
 });
 
 router.get('/answers/:question_id', (request, response) => {
-  const { question_id } = request.params
-  database('answers').where({ question_id }).select()
+  const { question_id } = request.params;
+  database('answers').where({ question_id }).select().orderBy('votes', 'desc')
   .then((answers) => {
-    response.status(200).json(answers);
+    const convertedAnswers = utils.alterTimeStamp(answers);
+    response.status(200).json(convertedAnswers);
   })
   .catch((error) => {
     response.status(500).send({ error });
@@ -160,5 +161,30 @@ router.get('/search/:searchTerm', (request, response) => {
     console.log(error)
   })
 })
+
+router.patch('/answers/:id', (request, response) => {
+  const { id } = request.params;
+  const { value } = request.query;
+
+  database('answers').where('id', id).select()
+    .then((answers) => {
+      if (!answers.length) {
+        response.status(404).send({ error: 'Invalid Answer ID' });
+      } else {
+        database('answers').where('id', id).max('votes')
+          .then((currentMax) => {
+            const newMaxValue = value === 'down' ? currentMax[0].max -= 1 : currentMax[0].max += 1;
+            database('answers').where('id', id)
+              .update({ votes: newMaxValue }, ['votes'])
+              .then((updatedCounter) => {
+                response.status(200).send(...updatedCounter);
+              })
+              .catch((error) => {
+                response.status(500).send({ error });
+              });
+          });
+      }
+    });
+});
 
 module.exports = router;
