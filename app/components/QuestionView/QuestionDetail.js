@@ -28,23 +28,30 @@ export default class QuestionDetail extends Component {
 
   componentWillMount() {
     const { questions, id } = this.props;
-    if (questions) {
-      const q = questions.find((q) => {
-        return q.id * 1 === id * 1;
-      });
-      this.fetchTags(q.id);
-      this.setState(q);
-      this.updateQuestionViews(q.id);
-      // this.fetchAnswers().then(anwsers => this.setState({ answersArray }))
+    const q = questions.find((q) => {
+      return q.id * 1 === id * 1;
+    });
+
+    if (q) {
+      this.fetchMatchedQuestion(q);
     } else {
-      // fetch the specific question
-      // fetchQuestion().then(fetchAnswers).then(anwsers => this.setState({ answersArray }))
+      this.fetchNewQuestion(id);
     }
   }
 
-  // fetchQuestion() {
-  //   //return fetch(ble bla)
-  // }
+  fetchNewQuestion(id) {
+    this.props.fetchQuestion(id)
+      .then(question => {
+        this.setState(question);
+        this.fetchTags(question.id);
+      });
+  }
+
+  fetchMatchedQuestion(question) {
+    this.fetchTags(question.id);
+    this.setState(question);
+    this.updateQuestionViews(question.id);
+  }
 
   fetchTags(id) {
     this.props.fetchQuestionTags(id)
@@ -98,7 +105,7 @@ export default class QuestionDetail extends Component {
             details={'asked'}
           />
         </div>
-        <AnswerListContainer question_id={id} />
+        <AnswerListContainer question_id={ id } />
       </section>
     );
   }
