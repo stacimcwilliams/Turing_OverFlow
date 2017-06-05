@@ -6,8 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon server/main.js",
     "build": "webpack --config ./webpack.prod.config.js",
+    "test": "mocha  --compilers js:babel-register tests/* --no-timeouts",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
-    "test": "mocha tests/* --no-timeouts",
     "lint": "eslint ."
   },
   "repository": {
@@ -53,6 +53,7 @@
     "react-addons-test-utils": "^15.5.1",
     "redux-mock-store": "^1.2.3",
     "sass-loader": "^6.0.5",
+    "sinon": "^2.3.2",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8"
   },
