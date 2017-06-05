@@ -72,9 +72,9 @@ export const addAnswer = (question_id, answer, name) => {
 };
 
 const searchResults = (searchResults) => {
+  console.log('action searchResults', searchResults)
   return {
     type: 'ADD_SEARCH_RESULTS',
-    // serachTerm
     searchResults,
   };
 }
@@ -88,8 +88,8 @@ export const fetchSearch = (searchTerm) => {
       console.log('got response', response)
       response.json()
       .then((json) => {
-        console.log('json is', json)
-        dispatch(searchResults(json))
+        console.log('json is an array', json)
+        dispatch(searchResults({ searchTerm, resultsArray:json }))
       })
     })
 

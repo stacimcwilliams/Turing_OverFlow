@@ -15,10 +15,9 @@ export default class Search extends Component {
 
   searchDB() {
     const { searchTerm } = this.state
-    const { fetchSearch } = this.props
+    const { fetchSearch, history } = this.props
 
-    fetchSearch(searchTerm).then(() => console.log('push to /search/searchTerm?'))
-
+    fetchSearch(searchTerm).then(() => history.push(`/search/${searchTerm}`))
 
   }
 
@@ -29,7 +28,7 @@ export default class Search extends Component {
           className="search-input" 
           placeholder="Search..." 
           onChange={(e)=> this.setState({ searchTerm: e.target.value })}/>
-        <Button className="search--btn" handleClick={ this.searchDB } />
+        <Button className="search--btn" handleClick={ this.searchDB }/>
       </div>
     );
   }

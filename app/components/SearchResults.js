@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
-import Button from './Button';
 import { Link } from 'react-router-dom';
 
-export default class Search extends Component {
+import Button from './Button';
+import MainQuestionContainer from '../containers/MainQuestionContainer';
+
+export default class SearchResults extends Component {
   constructor() {
     super();
 
-    this.state = {
-      searchTerm: ''
-    }
-
-    this.searchDB = this.searchDB.bind(this);
   }
 
-  searchDB() {
-    const { searchTerm } = this.state
-    const { fetchSearch } = this.props
+  renderQuestions() {
+    console.log(this.props.searchResults)
+    return this.props.searchResults.resultsArray.map((question) => {
+      return (
+        <MainQuestionContainer key={ question.id } { ...question } />
+      );
+    });
+  }
 
-    fetchSearch(searchTerm).then(() => console.log('push to /search/searchTerm?'))
 
+  componentWillMount() {
+    const { searchResults: { searchTerm, resultsArray }, searchTermMatch, fetchSearch } = this.props
 
+    if (!searchTerm || !(searchTerm === searchTermMatch)) {
+      fetchSearch(searchTermMatch).then(() => {
+        console.log('Searching for', searchTermMatch)
+        // this.forceUpdate()
+      })
+    }
   }
 
   render() {
+    const questionResults = this.renderQuestions()
     return (
-      <div className="search-container">
-        <input 
-          className="search-input" 
-          placeholder="Search..." 
-          onChange={(e)=> this.setState({ searchTerm: e.target.value })}/>
-        <Button className="search--btn" handleClick={ this.searchDB } />
+      <div className="search-results">
+        {questionResults}
       </div>
     );
   }
