@@ -5,10 +5,10 @@ module.exports = {
   devtool: '#source-map',
   context: __dirname,
   entry: [
-    './app/index.js',
+    './app',
   ],
   output: {
-    path: './build',
+    path: 'path.join(__dirname, 'public')',
     filename: 'bundle.js',
     publicPath: '/',
   },
