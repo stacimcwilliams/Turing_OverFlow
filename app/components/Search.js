@@ -24,7 +24,17 @@ export default class Search extends Component {
     } else {
       Alert.error(`Please enter a term to search`);
     }
+  }
 
+  componentDidMount() {
+    console.log('search DID MOUNT ')
+    document.getElementsByClassName('search-input')[0].onkeypress = (e) => {
+      if (!e) e = window.event; //stack o
+      var keyCode = e.keyCode || e.which; //stack o
+      if (keyCode == '13'){
+        this.searchDB()
+      }
+    }
   }
 
   render() {
