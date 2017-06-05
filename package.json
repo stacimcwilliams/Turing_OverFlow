@@ -58,6 +58,7 @@
     "url-loader": "^0.5.8"
   },
   "dependencies": {
+    "babel-loader": "^6.4.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "history": "^4.6.1",
