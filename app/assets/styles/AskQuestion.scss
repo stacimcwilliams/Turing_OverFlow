@@ -1,5 +1,12 @@
 .ask-question-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 10px 0;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
   .ask-question-header {
     margin: 10px 0;
     font-size: 1.4em;
