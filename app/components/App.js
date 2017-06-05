@@ -10,18 +10,23 @@ import NavBar from './NavBar';
 import DashboardContainer from '../containers/DashboardContainer';
 import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
+import SearchResultsContainer from '../containers/SearchResultsContainer';
 
 
-const App = () => {
+
+const App = ({ history }) => {
   return (
     <div>
-      <NavBar />
+      <NavBar history={ history }/>
       <Route exact path='/' component={ DashboardContainer } />
       <Route exact path='/ask-question' component={ AskQuestionContainer }/>
       <Route path="/question/:id" render={ ({ match }) => {
         return <QuestionDetailContainer id={match.params.id} />;
       }}
       />
+      <Route path="/search/:searchTerm" render={ ({ match }) => {
+        return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />
+      }}/>
       <Alert
         stack={{ limit: 5 }}
         position="top"
