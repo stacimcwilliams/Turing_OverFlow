@@ -5,12 +5,12 @@ module.exports = {
   devtool: '#source-map',
   context: __dirname,
   entry: [
-    './app/index.js',
+    './public/app/index.js',
   ],
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/',
+    // publicPath: '/',
   },
   node: {
     fs: 'empty',
@@ -39,13 +39,6 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
       },
-    ],
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': JSON.stringify('production'),
-        },
-      }),
     ],
   },
   resolve: {
