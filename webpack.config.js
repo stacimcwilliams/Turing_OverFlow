@@ -7,7 +7,7 @@ module.exports = {
     './app',
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: './build',
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -38,6 +38,13 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
       },
+    ],
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production'),
+        },
+      }),
     ],
   },
   resolve: {
