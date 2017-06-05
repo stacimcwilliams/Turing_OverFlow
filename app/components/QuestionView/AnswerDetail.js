@@ -35,6 +35,7 @@ export default class AnswerDetail extends Component {
           votes={ votes }
           handleVotes={ this.handleAnswerVotes }
           created_at={ created_at }
+          details={'answered'}
         />
       </div>
     );
