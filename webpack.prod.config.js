@@ -3,15 +3,15 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
-
+  context: __dirname,
   entry: [
     './app/index.js',
   ],
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'app'),
     filename: 'bundle.js',
-    publicPath: './public',
+    publicPath: './assets/',
   },
 
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production')
       },
     }),
   ],
