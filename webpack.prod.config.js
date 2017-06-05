@@ -2,10 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'sourse-map',
+  devtool: 'source-map',
 
   entry: [
-    './app/index.js'
+    './app/index.js',
   ],
 
   output: {
@@ -25,8 +25,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
-      }
-    })
+      },
+    }),
   ],
 
   module: {
