@@ -1,4 +1,6 @@
 .dashboard {
+  display: flex;
+  justify-content: space-around;
   padding: 10px;
   .dashboard-header {
     margin: 10px 0;
@@ -10,6 +12,7 @@
   }
   .dashboard-questions-wrapper {
     max-width: 600px;
+    width: 100%;
   }
   .dashboard-header-container{
     display: flex;
@@ -18,10 +21,47 @@
   }
 }
 
+.popular-data {
+  display: none;
+  width: calc(100% / 2 - 20px);
+  max-width: 425px;
+}
+
+.popular-questions-wrapper {
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid $turing-green;
+  .popular-question {
+    display: flex;
+    margin: 10px 0;
+    .popular-views {
+      width: 40px;
+    }
+    .title-link {
+      font-size: 0.8em;
+    }
+  }
+}
+
 @media screen and (min-width: 350px) {
   .dashboard{
     .add-question-link{
       font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 625px) {
+  .dashboard{
+
+    .dashboard-questions-wrapper {
+      width: calc(100% / 1 - 20px);
+      margin: 0 10px;
+    }
+    .popular-data {
+      display: flex;
+      flex-direction: column;
+      margin: 0 10px;
     }
   }
 }
