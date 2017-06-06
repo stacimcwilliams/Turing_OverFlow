@@ -13,7 +13,7 @@ import Dashboard from '../../app/components/MainView/Dashboard.js';
 
 
 describe('Dashboard testing', () => {
-  it('dashboard existence', () => {
+  it.skip('dashboard existence', () => {
     const spy = sinon.spy();
     const w = shallow(<Dashboard fetchAllQuestions={spy} questions= {[]}/>);
 

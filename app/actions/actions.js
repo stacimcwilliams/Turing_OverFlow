@@ -145,3 +145,10 @@ export const addAnswer = (question_id, answer, name) => {
       response.json(),
     );
 };
+
+export const addHistoryToStore = (history) => {
+  return {
+    type: 'ADD_HISTORY_TO_STORE', 
+    history
+  }
+}
