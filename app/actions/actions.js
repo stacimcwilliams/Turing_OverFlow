@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-const fetchAllQuestionsAction = (questions) => {
+export const fetchAllQuestionsAction = (questions) => {
   return {
     type: 'FETCH_ALL_QUESTIONS',
     questions,

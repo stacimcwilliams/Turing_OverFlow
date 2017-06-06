@@ -14,7 +14,6 @@ export default class SearchResults extends Component {
     });
   }
 
-
   componentWillMount() {
     const { searchResults: { searchTerm, resultsArray }, searchTermMatch, fetchSearch } = this.props;
 
