@@ -3,7 +3,7 @@ import SimpleMDE from 'simplemde';
 import Alert from 'react-s-alert';
 
 import Button from '../Button';
-import TagLinkContainer from '../../containers/TagLinkContainer';
+import NewTagLink from '../NewTagLink';
 import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AskQuestion extends Component {
@@ -81,7 +81,7 @@ export default class AskQuestion extends Component {
 
   renderTags() {
     return this.state.tags.map((tag, i) =>
-      <TagLinkContainer key={i} name={ tag } added='ask' handleDelete={ this.handleTagDelete }/>,
+      <NewTagLink key={i} name={ tag } handleDelete={ this.handleTagDelete }/>,
     );
   }
 
