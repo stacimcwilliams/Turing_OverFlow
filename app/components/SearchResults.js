@@ -5,9 +5,6 @@ import Button from './Button';
 import MainQuestionContainer from '../containers/MainQuestionContainer';
 
 export default class SearchResults extends Component {
-  constructor() {
-    super();
-  }
 
   renderQuestions() {
     return this.props.searchResults.resultsArray.map((question) => {
@@ -28,9 +25,10 @@ export default class SearchResults extends Component {
 
   render() {
     const questionResults = this.renderQuestions();
+
     return (
       <div className="search-results">
-        <h1> Search results </h1>
+        <h2 className="search-results-header">Search results</h2>
         {
           questionResults.length ?
           questionResults :

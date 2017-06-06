@@ -3,6 +3,7 @@
 @import 'NavBar';
 @import 'Button';
 @import 'Search';
+@import 'SearchResults';
 @import 'Dashboard';
 @import 'MainQuestion';
 @import 'QuestionDetail';
@@ -12,7 +13,7 @@
 @import 'UserVoteDetails';
 
 body {
-  background: lighten($main-background, 20%);
+  background: lighten($main-background, 18%);
   margin: 0;
   font-family: $open-sans;
   color: default-grey;
