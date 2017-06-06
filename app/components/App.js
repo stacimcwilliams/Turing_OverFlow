@@ -13,17 +13,21 @@ import QuestionDetailContainer from '../containers/QuestionDetailContainer';
 import SearchResultsContainer from '../containers/SearchResultsContainer';
 
 const App = ({ history }) => {
+
   return (
     <div>
       <NavBar history={ history }/>
       <Route exact path='/' component={ DashboardContainer } />
       <Route exact path='/ask-question' component={ AskQuestionContainer }/>
       <Route path="/question/:id" render={ ({ match }) => {
-        return <QuestionDetailContainer id={match.params.id} />;
+        return <QuestionDetailContainer id={ match.params.id } history={ history } />;
       }}
       />
-      <Route path="/search/:searchTerm" render={ ({ match }) => {
+      <Route exact path="/search/:searchTerm" render={ ({ match }) => {
         return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />;
+      }}/>
+      <Route exact path="/search/tag/:tag" render={ ({ match }) => {
+        return <SearchResultsContainer searchTermMatch={ match.params.tag } />;
       }}/>
       <Alert
         stack={{ limit: 5 }}
