@@ -38,7 +38,7 @@ export default class MainQuestion extends Component {
             { tags }
           </div>
           <h4 className="main-user-name">{ user_name }</h4>
-          <h5 className="main-created-at">{ created_at }</h5>
+          <h5 className="main-created-at">asked { created_at }</h5>
         </div>
       </div>
     );

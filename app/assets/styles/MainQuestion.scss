@@ -24,3 +24,16 @@
     font-weight: $normal;
   }
 }
+
+@media screen and (min-width: 625px) {
+  .question-wrapper {
+    flex-direction: row;
+    .count-wrapper {
+      flex-direction: column;
+      margin: 0 20px 0 0;
+    }
+    .summary-wrapper {
+      width: 82%;
+    }
+  }
+}

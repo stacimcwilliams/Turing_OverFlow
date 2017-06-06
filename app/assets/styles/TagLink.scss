@@ -36,6 +36,8 @@
     height: inherit;
     padding: 0;
     border: $input-border-green;
+    border-top-left-radius: 2.5px;
+    border-bottom-left-radius: 2.5px;
     text-indent: 5px;
   }
   .tag--btn {
@@ -43,6 +45,8 @@
     height: 29px;
     background: $turing-green;
     border: $input-border-green;
+    border-top-right-radius: 2.5px;
+    border-bottom-right-radius: 2.5px;
     cursor: pointer;
   }
 }
