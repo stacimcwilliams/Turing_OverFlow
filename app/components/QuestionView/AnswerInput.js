@@ -3,7 +3,7 @@ import SimpleMDE from 'simplemde';
 import Alert from 'react-s-alert';
 
 import Button from '../Button';
-import '../../../node_modules/simplemde/dist/simplemde.min.css';
+// import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AnswerInput extends Component {
   constructor() {

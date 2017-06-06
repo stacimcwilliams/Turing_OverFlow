@@ -4,7 +4,6 @@ import Alert from 'react-s-alert';
 
 import Button from '../Button';
 import TagLinkContainer from '../../containers/TagLinkContainer';
-import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AskQuestion extends Component {
   constructor() {
