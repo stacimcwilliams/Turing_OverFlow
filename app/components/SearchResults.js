@@ -19,7 +19,7 @@ export default class SearchResults extends Component {
     const {
       searchResults: { searchTerm, resultsArray },
       location: { pathname },
-      searchTermMatch, fetchSearch, fetchTag
+      searchTermMatch, fetchSearch, fetchTag,
     } = this.props;
 
     if ((!searchTerm || !(searchTerm === searchTermMatch)) && searchTermMatch) {
