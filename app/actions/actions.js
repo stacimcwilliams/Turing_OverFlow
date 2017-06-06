@@ -7,6 +7,27 @@ const fetchAllQuestionsAction = (questions) => {
   };
 };
 
+const fetchPopularQuestionsAction = (popularQuestions) => {
+  return {
+    type: 'FETCH_POPULAR_QUESTIONS',
+    popularQuestions,
+  };
+};
+
+const fetchRecentTagsAction = (recentTags) => {
+  return {
+    type: 'FETCH_RECENT_TAGS',
+    recentTags,
+  };
+};
+
+const searchResults = (searchResults) => {
+  return {
+    type: 'ADD_SEARCH_RESULTS',
+    searchResults,
+  };
+};
+
 export const fetchAllQuestions = () => {
   return dispatch =>
   fetch('/api/v1/questions')
@@ -16,6 +37,40 @@ export const fetchAllQuestions = () => {
   .then((questions) => {
     dispatch(fetchAllQuestionsAction(questions));
   });
+};
+
+export const fetchPopularQuestions = () => {
+  return dispatch =>
+  fetch('/api/v1/questions/popular')
+  .then(response =>
+    response.json(),
+  )
+  .then((questions) => {
+    dispatch(fetchPopularQuestionsAction(questions));
+  });
+};
+
+export const fetchRecentTags = () => {
+  return dispatch =>
+  fetch('/api/v1/tags/recent')
+  .then(response =>
+    response.json(),
+  )
+  .then((tags) => {
+    dispatch(fetchRecentTagsAction(tags));
+  });
+};
+
+export const fetchSearch = (searchTerm) => {
+  return dispatch => {
+    return fetch(`/api/v1/search/${searchTerm}`)
+    .then((response) => {
+      response.json()
+      .then((json) => {
+        dispatch(searchResults({ searchTerm, resultsArray: json }));
+      });
+    });
+  };
 };
 
 export const fetchQuestion = (id) => {
@@ -77,24 +132,4 @@ export const addAnswer = (question_id, answer, name) => {
     .then(response =>
       response.json(),
     );
-};
-
-const searchResults = (searchResults) => {
-  return {
-    type: 'ADD_SEARCH_RESULTS',
-    searchResults,
-  };
-};
-
-export const fetchSearch = (searchTerm) => {
-  // check on spaces here, may need conversion
-  return dispatch => {
-    return fetch(`/api/v1/search/${searchTerm}`)
-    .then((response) => {
-      response.json()
-      .then((json) => {
-        dispatch(searchResults({ searchTerm, resultsArray: json }));
-      });
-    });
-  };
 };

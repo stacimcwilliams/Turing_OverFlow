@@ -8,7 +8,18 @@ const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
 router.get('/questions', (request, response) => {
-  database('questions').select().orderBy('created_at', 'desc')
+  database('questions').select().orderBy('created_at', 'desc').limit(20)
+  .then((questions) => {
+    const convertedQuestions = utils.alterTimeStamp(questions);
+    response.status(200).json(convertedQuestions);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
+});
+
+router.get('/questions/popular', (request, response) => {
+  database('questions').select().orderBy('views', 'desc').limit(10)
   .then((questions) => {
     const convertedQuestions = utils.alterTimeStamp(questions);
     response.status(200).json(convertedQuestions);
@@ -58,6 +69,16 @@ router.get('/answers/:question_id', (request, response) => {
 
 router.get('/tags', (request, response) => {
   database('tags').select()
+  .then((tags) => {
+    response.status(200).json(tags);
+  })
+  .catch((error) => {
+    response.status(500).send({ error });
+  });
+});
+
+router.get('/tags/recent', (request, response) => {
+  database('tags').select().orderBy('created_at', 'desc').limit(10)
   .then((tags) => {
     response.status(200).json(tags);
   })
