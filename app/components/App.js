@@ -12,7 +12,8 @@ import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
 import SearchResultsContainer from '../containers/SearchResultsContainer';
 
-const App = ({ history }) => {
+const App = ({ history, addHistoryToStore }) => {
+  addHistoryToStore(history)
   return (
     <div>
       <NavBar history={ history }/>
