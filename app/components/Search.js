@@ -17,10 +17,10 @@ export default class Search extends Component {
 
   searchDB() {
     const { searchTerm } = this.state;
-    const { fetchSearch, history } = this.props;
+    const { fetchSearch, storedHistory } = this.props;
 
     if (searchTerm) {
-      fetchSearch(searchTerm).then(() => history.push(`/search/${searchTerm}`));
+      fetchSearch(searchTerm).then(() => storedHistory.push(`/search/${searchTerm}`));
     } else {
       Alert.error('Please enter a term to search');
     }

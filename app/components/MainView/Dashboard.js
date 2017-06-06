@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
   renderQuestions() {
     return this.props.questions.map((question) => {
       return (
-        <MainQuestionContainer key={ question.id } { ...question } history={ this.props.history } />
+        <MainQuestionContainer key={ question.id } { ...question } />
       );
     });
   }
@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
   }
 
   renderTags() {
-    return this.props.recentTags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } history={ this.props.history } />);
+    return this.props.recentTags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } />);
   }
 
   render() {

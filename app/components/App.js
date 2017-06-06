@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import Alert from 'react-s-alert';
@@ -12,22 +12,28 @@ import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
 import SearchResultsContainer from '../containers/SearchResultsContainer';
 
-const App = ({ history, addHistoryToStore }) => {
-  addHistoryToStore(history)
-  return (
-    <div>
-      <NavBar history={ history }/>
-      <Route exact path='/' component={ DashboardContainer } />
-      <Route exact path='/ask-question' component={ AskQuestionContainer }/>
-      <Route path="/question/:id" render={ ({ match }) => {
-        return <QuestionDetailContainer id={ match.params.id } history={ history } />;
-      }}
+export default class App extends Component {
+
+  componentDidMount() {
+    const { history, addHistoryToStore } = this.props;
+    addHistoryToStore(history);
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <Route exact path='/' component={ DashboardContainer } />
+        <Route exact path='/ask-question' component={ AskQuestionContainer }/>
+        <Route path="/question/:id" render={ ({ match }) => {
+          return <QuestionDetailContainer id={ match.params.id } history={ history } />;
+        }}
       />
-      <Route exact path="/search/:searchTerm" render={ ({ match }) => {
-        return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />;
+      <Route exact path="/search/:searchTerm" render={ ({ match, location }) => {
+        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.searchTerm } />;
       }}/>
-      <Route exact path="/search/tag/:tag" render={ ({ match }) => {
-        return <SearchResultsContainer searchTermMatch={ match.params.tag } />;
+      <Route exact path="/search/tag/:tag" render={ ({ match, location }) => {
+        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.tag } />;
       }}/>
       <Alert
         stack={{ limit: 5 }}
@@ -36,7 +42,6 @@ const App = ({ history, addHistoryToStore }) => {
         effect='stackslide'
       />
     </div>
-  );
-};
-
-export default App;
+    );
+  }
+}
