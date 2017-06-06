@@ -1,27 +1,27 @@
 import 'whatwg-fetch';
 
-export const fetchAllQuestionsAction = (questions) => {
+const fetchAllQuestionsAction = (questions) => {
   return {
     type: 'FETCH_ALL_QUESTIONS',
     questions,
   };
 };
 
-export const fetchPopularQuestionsAction = (popularQuestions) => {
+const fetchPopularQuestionsAction = (popularQuestions) => {
   return {
     type: 'FETCH_POPULAR_QUESTIONS',
     popularQuestions,
   };
 };
 
-export const fetchRecentTagsAction = (recentTags) => {
+const fetchRecentTagsAction = (recentTags) => {
   return {
     type: 'FETCH_RECENT_TAGS',
     recentTags,
   };
 };
 
-export const searchResults = (searchResults) => {
+const searchResults = (searchResults) => {
   return {
     type: 'ADD_SEARCH_RESULTS',
     searchResults,
