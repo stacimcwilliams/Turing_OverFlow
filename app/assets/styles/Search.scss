@@ -3,10 +3,41 @@
   height: 25px;
   margin-right: 10px;
   .search-input {
+    width: 200px;
     height: inherit;
     padding: 0;
     border: none;
     text-indent: 5px;
     transition: all 0.3s;
+    &:after{
+        width: 100px;
+        transition: all 0.3s;
+        margin: 0px 0px 0px 10px;
+        background: #FFF;
+    }
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .search-container{
+    .search-input{
+      width: 300px;
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .search-container{
+    .search-input{
+      width: 400px;
+    }
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .search-container{
+    .search-input{
+      width: 700px;
+    }
   }
 }
