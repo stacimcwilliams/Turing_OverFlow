@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 80px 10px 10px 10px;
   .dashboard-header {
     margin: 10px 0;
     font-size: 1.4em;
@@ -11,8 +11,10 @@
     @include btn-styling;
   }
   .dashboard-questions-wrapper {
-    max-width: 600px;
     width: 100%;
+    max-width: 600px;
+    height: 90vh;
+    overflow: scroll;
   }
   .dashboard-header-container{
     display: flex;
