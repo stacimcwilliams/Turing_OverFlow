@@ -35,6 +35,14 @@ describe('actions', () => {
     }],
   };
 
+  const recentTags = {
+    results: [
+      { tag: 'JavaScript', question_id: 1001 },
+      { tag: 'Vanilla JS', question_id: 1001 },
+      { tag: 'Random Number', question_id: 1001 },
+    ],
+  };
+
   afterEach(() => {
     store.clearActions();
   });
@@ -51,6 +59,14 @@ describe('actions', () => {
   it('fetchPopularQuestionsAction', () => {
     const expectedAction = { type: 'FETCH_POPULAR_QUESTIONS', popularQuestions: popularQuestions.results };
     store.dispatch(actions.fetchPopularQuestionsAction(popularQuestions.results));
+    const createdAction = store.getActions();
+    expect(createdAction[0]).to.deep.equal(expectedAction);
+    expect(createdAction).to.have.lengthOf(1);
+  });
+
+  it('fetchRecentTagsAction', () => {
+    const expectedAction = { type: 'FETCH_RECENT_TAGS', recentTags: recentTags.results };
+    store.dispatch(actions.fetchRecentTagsAction(recentTags.results));
     const createdAction = store.getActions();
     expect(createdAction[0]).to.deep.equal(expectedAction);
     expect(createdAction).to.have.lengthOf(1);
