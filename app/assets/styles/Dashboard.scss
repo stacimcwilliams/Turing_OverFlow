@@ -4,8 +4,8 @@
   padding: 80px 10px 10px 10px;
   .dashboard-header {
     margin: 10px 0;
-    font-size: 1.3em;
-    color: $default-grey
+    font-size: 1.4em;
+    color: $dark-grey;
   }
   .add-question-link {
     @include btn-styling;
@@ -33,7 +33,7 @@
 .popular-questions-wrapper {
   margin: 19px 0;
   padding: 8px;
-  border: 1px solid $turing-green;
+  border: 1px solid $dark-grey;
   border-radius: 2.5px;
   .popular-question {
     display: flex;

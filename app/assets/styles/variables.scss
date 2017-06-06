@@ -6,7 +6,7 @@ $main-background: #c5c5c5;
 $default-grey: #2b2e2e;
 $dark-grey: #3c4040;
 $turing-green: #05c2d1;
-$link-color: #f46036;
+$link-color: #049BA7;
 $link-hover: #1a78c2;
 
 $normal: 400;
@@ -67,6 +67,7 @@ $input-border-green: 2px solid #05c2d1;
   .ask-question-header {
     margin: 10px 0;
     font-size: 1.4em;
+    color: $dark-grey;
   }
   .submit-question--btn {
     max-width: 300px;
