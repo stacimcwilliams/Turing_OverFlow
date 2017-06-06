@@ -29,11 +29,11 @@ export default class App extends Component {
           return <QuestionDetailContainer id={ match.params.id } history={ history } />;
         }}
       />
-      <Route exact path="/search/:searchTerm" render={ ({ match }) => {
-        return <SearchResultsContainer searchTermMatch={ match.params.searchTerm } />;
+      <Route exact path="/search/:searchTerm" render={ ({ match, location }) => {
+        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.searchTerm } />;
       }}/>
-      <Route exact path="/search/tag/:tag" render={ ({ match }) => {
-        return <SearchResultsContainer searchTermMatch={ match.params.tag } />;
+      <Route exact path="/search/tag/:tag" render={ ({ match, location }) => {
+        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.tag } />;
       }}/>
       <Alert
         stack={{ limit: 5 }}
