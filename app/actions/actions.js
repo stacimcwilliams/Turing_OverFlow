@@ -73,6 +73,18 @@ export const fetchSearch = (searchTerm) => {
   };
 };
 
+export const fetchTag = (tag) => {
+  return dispatch => {
+    return fetch(`/api/v1/search/tag/${tag}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) =>
+      dispatch(searchResults({ searchTerm: tag, resultsArray: json })),
+    );
+  };
+};
+
 export const fetchQuestion = (id) => {
   return () =>
   fetch(`/api/v1/questions/${id}`)
