@@ -5,9 +5,11 @@
 
 .search--btn {
 	height: inherit;
-	width: 25px;
+	width: 30px;
 	padding: 0;
 	border: none;
+	border-top-right-radius: 2.5px;
+	border-bottom-right-radius: 2.5px;
 	background: $turing-green;
 	color: $white;
 	cursor: pointer;
@@ -43,4 +45,10 @@
 	max-width: 300px;
 	@include btn-styling;
 	float: right;
+}
+
+@media screen and (min-width: 500px) {
+  .search--btn {
+		width: 35px;
+	}
 }
