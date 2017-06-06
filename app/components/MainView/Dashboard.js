@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import TagLink from '../TagLink';
 import PopularQuestions from './PopularQuestions';
 import MainQuestionContainer from '../../containers/MainQuestionContainer';
+import TagLinkContainer from '../../containers/TagLinkContainer';
 
 export default class Dashboard extends Component {
 
@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
   renderQuestions() {
     return this.props.questions.map((question) => {
       return (
-        <MainQuestionContainer key={ question.id } { ...question } />
+        <MainQuestionContainer key={ question.id } { ...question } history={ this.props.history } />
       );
     });
   }
@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
   }
 
   renderTags() {
-    return this.props.recentTags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+    return this.props.recentTags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } history={ this.props.history } />);
   }
 
   render() {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import Button from '../Button';
-import TagLink from '../TagLink';
 import UserVoteDetails from '../UserVoteDetails';
+import TagLinkContainer from '../../containers/TagLinkContainer';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
 import AnswerListContainer from '../../containers/AnswerListContainer';
 
@@ -67,7 +67,7 @@ export default class QuestionDetail extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+    return this.state.tags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } history={ this.props.history } />);
   }
 
   handleVotes(e) {
