@@ -42,8 +42,7 @@ export default class QuestionDetail extends Component {
   fetchNewQuestion(id) {
     this.props.fetchQuestion(id)
       .then(question => {
-        this.setState(question);
-        this.fetchTags(question.id);
+        this.fetchMatchedQuestion(question);
       });
   }
 
