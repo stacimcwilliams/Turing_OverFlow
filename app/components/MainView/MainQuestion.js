@@ -19,7 +19,7 @@ export default class MainQuestion extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } history={ this.props.history } />);
+    return this.state.tags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } />);
   }
 
   render() {

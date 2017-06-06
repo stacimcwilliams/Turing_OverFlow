@@ -81,7 +81,7 @@ export default class AskQuestion extends Component {
 
   renderTags() {
     return this.state.tags.map((tag, i) =>
-      <TagLinkContainer key={i} name={ tag } added='ask' history={ this.props.history } handleDelete={ this.handleTagDelete }/>,
+      <TagLinkContainer key={i} name={ tag } added='ask' handleDelete={ this.handleTagDelete }/>,
     );
   }
 

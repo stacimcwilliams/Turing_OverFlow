@@ -16,7 +16,7 @@ const App = ({ history, addHistoryToStore }) => {
   addHistoryToStore(history)
   return (
     <div>
-      <NavBar history={ history }/>
+      <NavBar />
       <Route exact path='/' component={ DashboardContainer } />
       <Route exact path='/ask-question' component={ AskQuestionContainer }/>
       <Route path="/question/:id" render={ ({ match }) => {
