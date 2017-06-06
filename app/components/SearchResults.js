@@ -5,9 +5,6 @@ import Button from './Button';
 import MainQuestionContainer from '../containers/MainQuestionContainer';
 
 export default class SearchResults extends Component {
-  constructor() {
-    super();
-  }
 
   renderQuestions() {
     return this.props.searchResults.resultsArray.map((question) => {
