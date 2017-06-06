@@ -13,9 +13,16 @@ import Dashboard from '../../app/components/MainView/Dashboard.js';
 
 
 describe('Dashboard testing', () => {
-  it.skip('dashboard existence', () => {
+  it('dashboard existence', () => {
     const spy = sinon.spy();
-    const w = shallow(<Dashboard fetchAllQuestions={spy} questions= {[]}/>);
+    const w = shallow(<Dashboard
+      fetchAllQuestions={spy}
+      fetchPopularQuestions={spy}
+      fetchRecentTags={spy}
+      questions= {[]}
+      popularQuestions={[]}
+      recentTags={[]}
+    />);
 
     expect(w.find('.dashboard').length, 1).equal(1);
     expect(w.find('Link').length, 1).equal(1);
