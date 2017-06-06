@@ -16,10 +16,14 @@ export default class SearchResults extends Component {
 
 
   componentWillMount() {
-    const { searchResults: { searchTerm, resultsArray }, searchTermMatch, fetchSearch } = this.props;
+    const {
+      searchResults: { searchTerm, resultsArray },
+      location: { pathname },
+      searchTermMatch, fetchSearch, fetchTag
+    } = this.props;
 
     if ((!searchTerm || !(searchTerm === searchTermMatch)) && searchTermMatch) {
-      fetchSearch(searchTermMatch);
+      pathname.includes('tag') ? fetchTag(searchTermMatch) : fetchSearch(searchTermMatch);
     }
   }
 
