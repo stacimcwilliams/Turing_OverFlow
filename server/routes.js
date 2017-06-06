@@ -169,15 +169,35 @@ router.patch('/questions/:id', (request, response) => {
 });
 
 router.get('/search/:searchTerm', (request, response) => {
-  // what about tags?
-  // ILIKE is case-insensitve LIKE, postgres only
   const { searchTerm } = request.params;
 
   database('questions')
   .where('question', 'ILIKE', `%${searchTerm}%`)
   .orWhere('title', 'ILIKE', `%${searchTerm}%`)
-  .then(results => {
-    response.status(200).json(results);
+  .orderBy('votes', 'desc')
+  .limit(20)
+  .then(searchResults => {
+    const convertedSearch = utils.alterTimeStamp(searchResults);
+    response.status(200).json(convertedSearch);
+  })
+  .catch(error => {
+    response.status(500).send({ error });
+  });
+});
+
+router.get('/search/tag/:tag', (request, response) => {
+  const { tag } = request.params;
+
+  database('tags')
+  .join('questions', 'tags.question_id', '=', 'questions.id')
+  .where('tag', 'ILIKE', `%${tag}%`)
+  .select()
+  .orderBy('votes', 'desc')
+  .limit(20)
+  .then(tagMatches => {
+    const convertedMatches = utils.alterTimeStamp(tagMatches);
+    console.log(convertedMatches);
+    response.status(200).json(convertedMatches);
   })
   .catch(error => {
     response.status(500).send({ error });

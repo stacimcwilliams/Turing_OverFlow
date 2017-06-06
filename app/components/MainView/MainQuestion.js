@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import TagLink from '../TagLink';
+import TagLinkContainer from '../../containers/TagLinkContainer';
 
 export default class MainQuestion extends Component {
   constructor() {
@@ -19,7 +19,7 @@ export default class MainQuestion extends Component {
   }
 
   renderTags() {
-    return this.state.tags.map(tag => <TagLink key={ tag.id } name={ tag.tag } />);
+    return this.state.tags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } history={ this.props.history } />);
   }
 
   render() {
