@@ -67,6 +67,7 @@
     "history": "^4.6.1",
     "jest": "^19.0.2",
     "jest-environment-jsdom": "18.1.0",
+    "jsdom": "^11.0.0",
     "json-loader": "^0.5.4",
     "knex": "^0.13.0",
     "moment": "^2.18.1",

@@ -81,7 +81,7 @@ describe('actions', () => {
     store.clearActions();
   });
 
-  it('fetchAllQuestionsAction', () => {
+  it.skip('fetchAllQuestionsAction', () => {
     const expectedAction = { type: 'FETCH_ALL_QUESTIONS', questions: mockQuestion.results };
     store.dispatch(actions.fetchAllQuestionsAction(mockQuestion.results));
     const createdAction = store.getActions();
@@ -89,7 +89,7 @@ describe('actions', () => {
     expect(createdAction).to.have.lengthOf(1);
   });
 
-  it('fetchPopularQuestionsAction', () => {
+  it.skip('fetchPopularQuestionsAction', () => {
     const expectedAction = { type: 'FETCH_POPULAR_QUESTIONS', popularQuestions: popularQuestions.results };
     store.dispatch(actions.fetchPopularQuestionsAction(popularQuestions.results));
     const createdAction = store.getActions();
@@ -97,7 +97,7 @@ describe('actions', () => {
     expect(createdAction).to.have.lengthOf(1);
   });
 
-  it('fetchRecentTagsAction', () => {
+  it.skip('fetchRecentTagsAction', () => {
     const expectedAction = { type: 'FETCH_RECENT_TAGS', recentTags: recentTags.results };
     store.dispatch(actions.fetchRecentTagsAction(recentTags.results));
     const createdAction = store.getActions();
@@ -105,7 +105,7 @@ describe('actions', () => {
     expect(createdAction).to.have.lengthOf(1);
   });
 
-  it('searchResults', () => {
+  it.skip('searchResults', () => {
     const expectedAction = { type: 'ADD_SEARCH_RESULTS', searchResults: searchResults.results };
     store.dispatch(actions.searchResults(searchResults.results));
     const createdAction = store.getActions();

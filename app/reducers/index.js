@@ -13,7 +13,7 @@ const appReducer = combineReducers({
   searchResults,
   popularQuestions,
   recentTags,
-  storedHistory
+  storedHistory,
 });
 
 const rootReducer = (state, action) => {
