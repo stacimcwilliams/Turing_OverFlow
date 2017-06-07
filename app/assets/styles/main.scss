@@ -33,6 +33,10 @@ code {
   margin: 10px 0;
 }
 
+::-webkit-input-placeholder {
+  font-family: $main-font;
+}
+
 .s-alert-box {
   .s-alert-box-inner {
     font-size: 0.8em;

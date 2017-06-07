@@ -21,6 +21,7 @@ export default class Search extends Component {
 
     if (searchTerm) {
       fetchSearch(searchTerm).then(() => storedHistory.push(`/search/${searchTerm}`));
+      this.setState({ searchTerm: '' });
     } else {
       Alert.error('Please enter a term to search');
     }
@@ -42,6 +43,7 @@ export default class Search extends Component {
         <input
           className="search-input"
           placeholder="Search..."
+          value={ this.state.searchTerm }
           onChange={(e) => this.setState({ searchTerm: e.target.value })}/>
         <Button className="search--btn" handleClick={ this.searchDB }/>
       </div>
