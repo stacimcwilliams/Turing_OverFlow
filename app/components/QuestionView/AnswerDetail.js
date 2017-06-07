@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
+import Highlight from 'react-highlight';
+import '../../../node_modules/highlight.js/styles/atom-one-light.css';
 
 import UserVoteDetails from '../UserVoteDetails';
 
@@ -26,10 +28,12 @@ export default class AnswerDetail extends Component {
     const { votes } = this.state;
     return (
       <div className="answer-detail">
-        <ReactMarkdown
-          className="answer-desc-md"
-          source ={ answer }
-        />
+        <Highlight className='language-name-of-snippet'>
+          <ReactMarkdown
+            className="answer-desc-md"
+            source ={ answer }
+          />
+        </Highlight>
         <UserVoteDetails
           user_name={ user_name }
           votes={ votes }

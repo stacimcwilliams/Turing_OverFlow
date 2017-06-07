@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
+import Highlight from 'react-highlight';
+import '../../../node_modules/highlight.js/styles/atom-one-light.css';
 
 import Button from '../Button';
 import UserVoteDetails from '../UserVoteDetails';
@@ -89,10 +91,12 @@ export default class QuestionDetail extends Component {
       <section>
         <div className="question-desc-wrapper">
           <h1 className="question-desc-title">{ title }</h1>
-          <ReactMarkdown
-            className="question-desc-md"
-            source={ question }
-          />
+          <Highlight className='language-name-of-snippet'>
+            <ReactMarkdown
+              className="question-desc-md"
+              source={ question }
+            />
+          </Highlight>
           <div className="tags-wrapper">
             { tags }
           </div>
