@@ -148,7 +148,7 @@ export const addAnswer = (question_id, answer, name) => {
 
 export const addHistoryToStore = (history) => {
   return {
-    type: 'ADD_HISTORY_TO_STORE', 
-    history
-  }
-}
+    type: 'ADD_HISTORY_TO_STORE',
+    history,
+  };
+};

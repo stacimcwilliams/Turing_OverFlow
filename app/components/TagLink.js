@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TagLink = ({ name, added, handleDelete, fetchTag, storedHistory }) => {
-
   const searchDB = () => {
     fetchTag(name).then(() => storedHistory.push(`/search/tag/${name}`));
   };
