@@ -31,10 +31,11 @@
     flex-direction: row;
     .count-wrapper {
       flex-direction: column;
+      width: calc(100% / 5);
       margin: 0 20px 0 0;
     }
     .summary-wrapper {
-      width: 82%;
+      width: calc(100% / 1.3);
     }
   }
 }
