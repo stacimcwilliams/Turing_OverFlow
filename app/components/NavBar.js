@@ -6,9 +6,9 @@ import Search from '../containers/SearchContainer';
 const NavBar = () => {
   return (
     <div className={ 'nav-bar' }>
-      <Link to={ '/' } className='home-link' >
-        <img src="https://d3c5s1hmka2e2b.cloudfront.net/uploads/topic/image/182/Turing---Logo-Black.png" />
-      </Link >
+      <Link to={ '/' } className='home-link' />
+        {/* <img src="./app/assets/images/turing-logo.png" /> */}
+      {/* </Link > */}
       <Search />
     </div>
   );

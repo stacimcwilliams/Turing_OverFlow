@@ -3,7 +3,8 @@
   flex-direction: column-reverse;
   margin: 19px auto;
   padding: 8px;
-  border: 1px solid $turing-green;
+  border: 1px solid $dark-grey;
+  border-radius: 2.5px;
   .count-wrapper {
     display: flex;
     align-items: center;
@@ -30,10 +31,11 @@
     flex-direction: row;
     .count-wrapper {
       flex-direction: column;
+      width: calc(100% / 5);
       margin: 0 20px 0 0;
     }
     .summary-wrapper {
-      width: 82%;
+      width: calc(100% / 1.3);
     }
   }
 }

@@ -21,7 +21,7 @@
     transition: all 0.5s;
     color: $white;
     &:hover {
-      background: #E74C3C;
+      color: #E74C3C;
     }
   }
 }
@@ -42,7 +42,7 @@
   }
   .tag--btn {
     width: 10%;
-    height: 29px;
+    height: 34px;
     background: $turing-green;
     border: $input-border-green;
     border-top-right-radius: 2.5px;
