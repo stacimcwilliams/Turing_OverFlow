@@ -37,7 +37,9 @@ export default class AskQuestion extends Component {
   }
 
   handleTags(tag) {
-    if (this.state.tags.length < 5) {
+    if (tag.length < 1) {
+      Alert.error('Please enter a value into the tag input');
+    } else if (this.state.tags.length < 5) {
       this.setState({
         tags: this.state.tags.concat(tag),
         tagText: '',
