@@ -49,7 +49,7 @@ export default class Dashboard extends Component {
         </div>
         <div className="popular-data">
           <div className='dashboard-header-container'>
-            <h2 className="dashboard-header">Popular Questions</h2>
+            <h2 className="dashboard-header">Most Viewed</h2>
           </div>
           <div className="popular-questions-wrapper">
             { popularQuestions }
