@@ -33,6 +33,16 @@ code {
   margin: 10px 0;
 }
 
+.ask-question-wrapper {
+  .editor-toolbar.fullscreen {
+    top: 80px;
+  }
+  .CodeMirror-fullscreen,
+  .editor-preview-side {
+    top: 130px;
+  }
+}
+
 ::-webkit-input-placeholder {
   font-family: $main-font;
 }
