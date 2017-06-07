@@ -10,6 +10,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import rootReducer from './reducers/index';
 import styles from './assets/styles/main';
+import '../node_modules/simplemde/dist/simplemde.min.css';
 
 import AppContainer from './containers/AppContainer';
 

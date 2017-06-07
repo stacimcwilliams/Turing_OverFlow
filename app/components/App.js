@@ -30,10 +30,16 @@ export default class App extends Component {
         }}
       />
       <Route exact path="/search/:searchTerm" render={ ({ match, location }) => {
-        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.searchTerm } />;
+        return <SearchResultsContainer
+          location={ location }
+          searchTermMatch={ match.params.searchTerm }
+        />;
       }}/>
       <Route exact path="/search/tag/:tag" render={ ({ match, location }) => {
-        return <SearchResultsContainer location={ location } searchTermMatch={ match.params.tag } />;
+        return <SearchResultsContainer
+          location={ location }
+          searchTermMatch={ match.params.tag }
+        />;
       }}/>
       <Alert
         stack={{ limit: 5 }}
