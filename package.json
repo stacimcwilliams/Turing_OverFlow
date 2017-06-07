@@ -69,6 +69,7 @@
     "pg": "^6.2.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-highlight": "^0.10.0",
     "react-markdown": "^2.5.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
