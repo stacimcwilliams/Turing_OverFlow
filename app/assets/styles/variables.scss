@@ -51,10 +51,13 @@ $input-border-green: 2px solid #05c2d1;
 @mixin markdown-style {
   max-height: 600px;
   margin: 0 auto 25px auto;
-  padding: 5px;
+  padding: 8px;
   border: 1px solid $turing-green;
   overflow: auto;
-  background: $white
+  white-space: normal;
+  background: $white;
+  font-size: 0.9em;
+  font-family: $main-font;
 }
 
 @mixin editor-wrapper {

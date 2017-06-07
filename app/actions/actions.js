@@ -28,6 +28,13 @@ const searchResults = (searchResults) => {
   };
 };
 
+export const addHistoryToStore = (history) => {
+  return {
+    type: 'ADD_HISTORY_TO_STORE',
+    history,
+  };
+};
+
 export const fetchAllQuestions = () => {
   return dispatch =>
   fetch('/api/v1/questions')
@@ -144,11 +151,4 @@ export const addAnswer = (question_id, answer, name) => {
     .then(response =>
       response.json(),
     );
-};
-
-export const addHistoryToStore = (history) => {
-  return {
-    type: 'ADD_HISTORY_TO_STORE',
-    history,
-  };
 };

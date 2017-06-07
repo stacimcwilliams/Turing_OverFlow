@@ -36,7 +36,8 @@ router.get('/questions/:id', (request, response) => {
     if (!question.length) {
       response.status(404).send({ error: 'Question could not be found' });
     } else {
-      response.status(200).json(...question);
+      const convertedQuestion = utils.alterTimeStamp(question);
+      response.status(200).json(...convertedQuestion);
     }
   })
   .catch((error) => {
@@ -135,7 +136,8 @@ router.post('/questions', (request, response) => {
       }),
     ])
     .then(() => {
-      response.status(201).send(...addedQuestion);
+      const convertedQuestion = utils.alterTimeStamp(addedQuestion);
+      response.status(201).send(...convertedQuestion);
     });
   })
   .catch((error) => {
