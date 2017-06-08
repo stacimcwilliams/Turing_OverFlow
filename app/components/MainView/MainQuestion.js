@@ -25,11 +25,12 @@ export default class MainQuestion extends Component {
   render() {
     const { title, user_name, answers, views, votes, created_at, id } = this.props;
     const tags = this.renderTags();
+    const answered = answers > 0 ? 'answered' : null;
     return (
       <div className="question-wrapper">
         <div className="count-wrapper">
           <div>votes: { votes }</div>
-          <div>answers: { answers }</div>
+          <div className={ answered }>answers: { answers }</div>
           <div>views: { views }</div>
         </div>
         <div className="summary-wrapper">
