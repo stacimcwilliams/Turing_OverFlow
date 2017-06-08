@@ -24,6 +24,9 @@
   .main-created-at {
     font-weight: $normal;
   }
+  .answered {
+    color: green;
+  }
 }
 
 @media screen and (min-width: 625px) {
