@@ -35,6 +35,20 @@ export const addHistoryToStore = (history) => {
   };
 };
 
+export const userLogin = (user) => {
+  return {
+    type: 'USER_LOGIN',
+    user,
+  };
+};
+
+export const userLogout = (user) => {
+  return {
+    type: 'USER_LOGOUT',
+    user,
+  };
+};
+
 export const fetchAllQuestions = () => {
   return dispatch =>
   fetch('/api/v1/questions')
