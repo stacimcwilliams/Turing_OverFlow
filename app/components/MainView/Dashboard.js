@@ -8,7 +8,7 @@ import TagLinkContainer from '../../containers/TagLinkContainer';
 export default class Dashboard extends Component {
 
   componentWillMount() {
-    const { fetchAllQuestions, fetchPopularQuestions, fetchRecentTags, auth } = this.props;
+    const { fetchAllQuestions, fetchPopularQuestions, fetchRecentTags } = this.props;
     fetchAllQuestions();
     fetchPopularQuestions();
     fetchRecentTags();
