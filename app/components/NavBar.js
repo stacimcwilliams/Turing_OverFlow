@@ -8,12 +8,12 @@ const NavBar = ({ auth, userLogout }) => {
   return (
     <div className={ 'nav-bar' }>
       <Link to={ '/' } className='home-link' />
-      { loggedIn ?
-          <button onClick={ () => { auth.logout(); userLogout({}); }}>Log Out</button>
-          :
-          <button onClick={ () => auth.login() }>Login</button>
-      }
       <Search />
+      { loggedIn ?
+          <button className='logout--btn' onClick={ () => { auth.logout(); userLogout({}); }}>Log Out</button>
+          :
+          <button className='login--btn' onClick={ () => auth.login() }>Login</button>
+      }
     </div>
   );
 };
