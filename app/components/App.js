@@ -17,18 +17,25 @@ import Auth from '../Auth/auth';
 const auth = new Auth(config.CLIENT_ID, config.DOMAIN);
 
 export default class App extends Component {
+  constructor() {
+    super();
+    auth.on('userAdded', user => {
+      this.storeUser(user);
+    });
+  }
 
   componentDidMount() {
     const { history, addHistoryToStore } = this.props;
-    const profile = auth.getProfile();
+    addHistoryToStore(history);
+
+    const userProfile = auth.getProfile();
     const token = auth.loggedIn();
 
-    addHistoryToStore(history);
-    token && (this.storeUser(profile, token));
+    token && (this.storeUser(userProfile, token));
   }
 
-  storeUser(profile, token) {
-    const user = Object.assign({}, profile, { token });
+  storeUser(userProfile, token) {
+    const user = Object.assign({}, userProfile, { token });
     this.props.userLogin(user);
   }
 
