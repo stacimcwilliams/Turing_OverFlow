@@ -75,7 +75,7 @@ export default class AskQuestion extends Component {
     if (valuesEntered.length === 3 && tagsChecker) {
       this.props.addQuestion(title, question, name, tags)
         .then((response) => {
-          this.props.history.push(`/question/${response.id}`);
+          this.props.storedHistory.push(`/question/${response.id}`);
         });
     }
   }
