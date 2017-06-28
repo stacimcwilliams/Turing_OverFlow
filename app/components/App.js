@@ -20,7 +20,16 @@ export default class App extends Component {
 
   componentDidMount() {
     const { history, addHistoryToStore } = this.props;
+    const profile = auth.getProfile();
+    const token = auth.loggedIn();
+
     addHistoryToStore(history);
+    token && (this.storeUser(profile, token));
+  }
+
+  storeUser(profile, token) {
+    const user = Object.assign({}, profile, { token });
+    this.props.userLogin(user);
   }
 
   render() {
