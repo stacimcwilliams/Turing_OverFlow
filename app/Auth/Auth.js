@@ -1,6 +1,8 @@
 import Auth0 from 'auth0-lock';
 import config from '../../config.json';
 
+const EventEmitter = require('events').EventEmitter;
+
 const authOptions = {
   allowedConnections: ['github'],
   theme: {
@@ -8,8 +10,9 @@ const authOptions = {
   },
 };
 
-export default class Auth {
+export default class Auth extends EventEmitter {
   constructor(clientID, domain) {
+    super();
     this.lock = new Auth0(clientID, domain, authOptions);
     this.lock.on('authenticated', this.authenticate.bind(this));
     this.login = this.login.bind(this);
@@ -42,11 +45,14 @@ export default class Auth {
       } else {
         const { clientID, name, nickname, picture } = profile;
         const user = { clientID, name, nickname, picture };
-
-        localStorage.setItem('profile', JSON.stringify(user));
-        return user;
+        this.setProfile(user);
       }
     });
+  }
+
+  setProfile(user) {
+    localStorage.setItem('profile', JSON.stringify(user));
+    this.emit('userAdded', user);
   }
 
   getProfile() {
