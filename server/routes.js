@@ -198,7 +198,6 @@ router.get('/search/tag/:tag', (request, response) => {
   .limit(20)
   .then(tagMatches => {
     const convertedMatches = utils.alterTimeStamp(tagMatches);
-    console.log(convertedMatches);
     response.status(200).json(convertedMatches);
   })
   .catch(error => {
