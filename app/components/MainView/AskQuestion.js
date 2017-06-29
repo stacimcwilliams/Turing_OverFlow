@@ -68,12 +68,12 @@ export default class AskQuestion extends Component {
     return true;
   }
 
-  postQuestion(title, question, name, tags) {
+  postQuestion(title, question, name, picture, tags) {
     const valuesEntered = this.inputChecker();
     const tagsChecker = this.tagChecker();
 
     if (valuesEntered.length === 2 && tagsChecker) {
-      this.props.addQuestion(title, question, name, tags)
+      this.props.addQuestion(title, question, name, picture, tags)
         .then((response) => {
           this.props.storedHistory.push(`/question/${response.id}`);
         });
@@ -135,7 +135,7 @@ export default class AskQuestion extends Component {
         <Button
           className="submit-question--btn"
           btnName="Submit Question"
-          handleClick={ () => this.postQuestion(title, question, nickname, tags) }
+          handleClick={ () => this.postQuestion(title, question, nickname, picture, tags) }
         />
       </div>
     );

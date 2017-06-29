@@ -35,12 +35,12 @@ export default class AnswerInput extends Component {
     }
   }
 
-  postAnswer(answer, name) {
+  postAnswer(answer, name, picture) {
     const { question_id, refreshAnswers, toggleInput, addAnswer } = this.props;
 
     this.inputChecker();
     if (this.state.answer) {
-      addAnswer(question_id, answer, name)
+      addAnswer(question_id, answer, name, picture)
         .then((response) => {
           toggleInput();
           refreshAnswers();
@@ -59,7 +59,7 @@ export default class AnswerInput extends Component {
         <Button
           className="submit-answer--btn"
           btnName="Submit Answer"
-          handleClick={ () => this.postAnswer(answer, nickname) }
+          handleClick={ () => this.postAnswer(answer, nickname, picture) }
         />
       </div>
     );
