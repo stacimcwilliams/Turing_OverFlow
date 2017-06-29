@@ -2,7 +2,7 @@ import React from 'react';
 
 import AuthButton from './AuthButton';
 
-const UserVoteDetails = ({ user_name, votes, created_at, handleVotes, details, auth }) => {
+const UserVoteDetails = ({ user_name, user_img, votes, created_at, handleVotes, details, auth }) => {
   return (
     <div className="user-vote-info-wrapper">
       <div className="vote-details-wrapper">
@@ -25,7 +25,10 @@ const UserVoteDetails = ({ user_name, votes, created_at, handleVotes, details, a
       </div>
       <div className="detail-user-info">
         <p>{ details } { created_at }</p>
-        <p>{ user_name }</p>
+        <div className="detail-user-container">
+          <p className="user_name">{ user_name }</p>
+          <img className="user-image" src={user_img}></img>
+        </div>
       </div>
     </div>
   );
