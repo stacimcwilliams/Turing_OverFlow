@@ -58,7 +58,7 @@ export default class App extends Component {
 
   render() {
     const { toggleModal } = this.state;
-
+    const { user } = this.props;
     return (
       <div>
         <NavBar auth={ auth } handleClick={ this.toggleModal }/>
@@ -94,6 +94,7 @@ export default class App extends Component {
         />
         { toggleModal &&
           <LogoutModal
+            user={ user }
             auth={ auth }
             userLogout={ this.userLogout }
             toggleModal={ this.toggleModal }
