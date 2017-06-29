@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import PopularQuestions from './PopularQuestions';
+import AuthButton from '../AuthButton';
 import MainQuestionContainer from '../../containers/MainQuestionContainer';
 import TagLinkContainer from '../../containers/TagLinkContainer';
 
 export default class Dashboard extends Component {
+  constructor() {
+    super();
+    this.askQuestionRedirect = this.askQuestionRedirect.bind(this);
+  }
 
   componentWillMount() {
     const { fetchAllQuestions, fetchPopularQuestions, fetchRecentTags } = this.props;
@@ -35,6 +40,10 @@ export default class Dashboard extends Component {
     return this.props.recentTags.map(tag => <TagLinkContainer key={ tag.id } name={ tag.tag } />);
   }
 
+  askQuestionRedirect() {
+    this.props.storedHistory.push('/ask-question');
+  }
+
   render() {
     const questions = this.renderQuestions();
     const popularQuestions = this.renderPopularQuestions();
@@ -44,7 +53,13 @@ export default class Dashboard extends Component {
         <div className="dashboard-questions-wrapper">
           <div className='dashboard-header-container'>
             <h2 className="dashboard-header">Dashboard</h2>
-            <Link className="add-question-link" to={'/ask-question'}>Ask Question</Link>
+            <AuthButton
+              className={'add-question-link'}
+              name={'Ask Question'}
+              btnName={'Ask Question'}
+              auth={this.props.auth}
+              handleClick={ this.askQuestionRedirect }
+            />
           </div>
           { questions }
         </div>

@@ -1,23 +1,25 @@
 import React from 'react';
 
-import Button from './Button';
+import AuthButton from './AuthButton';
 
-const UserVoteDetails = ({ user_name, votes, created_at, handleVotes, details }) => {
+const UserVoteDetails = ({ user_name, votes, created_at, handleVotes, details, auth }) => {
   return (
     <div className="user-vote-info-wrapper">
       <div className="vote-details-wrapper">
         <h6>Votes</h6>
         <div className="vote-btn-wrapper">
-          <Button
+          <AuthButton
             className="vote-up"
             name="up"
             handleClick={ handleVotes }
+            auth={ auth }
           />
           { votes }
-          <Button
+          <AuthButton
             className="vote-down"
             name="down"
             handleClick={ handleVotes }
+            auth={ auth }
           />
         </div>
       </div>
