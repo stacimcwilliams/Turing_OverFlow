@@ -122,12 +122,12 @@ export const fetchQuestionTags = (id) => {
   );
 };
 
-export const addQuestion = (title, question, name, tags) => {
+export const addQuestion = (title, question, name, picture, tags) => {
   return () =>
     fetch('/api/v1/questions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, question, user_name: name, tags }),
+      body: JSON.stringify({ title, question, user_name: name, user_img: picture, tags }),
     })
     .then(response =>
       response.json(),
@@ -155,12 +155,12 @@ export const updateAnswerCounters = (id, direction) => {
     );
 };
 
-export const addAnswer = (question_id, answer, name) => {
+export const addAnswer = (question_id, answer, name, picture) => {
   return () =>
     fetch('/api/v1/answers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question_id, user_name: name, answer }),
+      body: JSON.stringify({ question_id, user_name: name, answer, user_img: picture }),
     })
     .then(response =>
       response.json(),
