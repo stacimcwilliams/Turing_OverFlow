@@ -84,6 +84,7 @@ export default class QuestionDetail extends Component {
 
   render() {
     const { title, question, user_name, answers, views, votes, created_at } = this.state;
+    const { auth } = this.props;
     const id = this.state.id || this.props.id;
     const tags = this.renderTags();
 
@@ -106,9 +107,10 @@ export default class QuestionDetail extends Component {
             handleVotes={ this.handleVotes }
             created_at={ created_at }
             details={'asked'}
+            auth={ auth }
           />
         </div>
-        <AnswerListContainer question_id={ id } />
+        <AnswerListContainer question_id={ id } auth={ auth }/>
       </section>
     );
   }
