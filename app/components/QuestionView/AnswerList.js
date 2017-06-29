@@ -49,6 +49,7 @@ export default class AnswerList extends Component {
         key={ answer.id }
         answer={ answer }
         updateAnswerCounters={ updateAnswerCounters }
+        auth={ auth }
       />;
     });
 
