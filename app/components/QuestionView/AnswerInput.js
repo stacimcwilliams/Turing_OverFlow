@@ -3,13 +3,11 @@ import SimpleMDE from 'simplemde';
 import Alert from 'react-s-alert';
 
 import Button from '../Button';
-// import '../../../node_modules/simplemde/dist/simplemde.min.css';
 
 export default class AnswerInput extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
       answer: '',
     };
   }
@@ -32,19 +30,16 @@ export default class AnswerInput extends Component {
   }
 
   inputChecker() {
-    return ['name', 'answer'].filter((value) => {
-      if (!this.state[value].length) {
-        Alert.error(`Please enter a value into the ${value} field`);
-      } else {
-        return value;
-      }
-    });
+    if (!this.state.answer) {
+      Alert.error('Please enter a value into the answer text area');
+    }
   }
 
   postAnswer(answer, name) {
     const { question_id, refreshAnswers, toggleInput, addAnswer } = this.props;
-    const valuesEntered = this.inputChecker();
-    if (valuesEntered.length === 2) {
+
+    this.inputChecker();
+    if (this.state.answer) {
       addAnswer(question_id, answer, name)
         .then((response) => {
           toggleInput();
@@ -55,26 +50,16 @@ export default class AnswerInput extends Component {
 
   render() {
     const { question, answer, name } = this.state;
+    const { user: { nickname, picture } } = this.props;
 
     return (
       <div className="supply-answer-wrapper">
         <h2 className="ask-question-header">Submit Answer</h2>
-        <div className="user-name-wrapper">
-          <label>User</label>
-          <input
-            className="user-name-input"
-            placeholder="Enter your name"
-            name="name"
-            value={ name }
-            maxLength="200"
-            onChange={ e => this.handleInput(e) }
-          />
-        </div>
         <textarea id="editor" />
         <Button
           className="submit-answer--btn"
           btnName="Submit Answer"
-          handleClick={ () => this.postAnswer(answer, name) }
+          handleClick={ () => this.postAnswer(answer, nickname) }
         />
       </div>
     );

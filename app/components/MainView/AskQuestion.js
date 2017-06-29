@@ -49,7 +49,7 @@ export default class AskQuestion extends Component {
   }
 
   inputChecker() {
-    return ['title', 'name', 'question'].filter((value) => {
+    return ['title', 'question'].filter((value) => {
       if (!this.state[value].length) {
         Alert.error(`Please enter a value into the ${value} field`);
       } else {
@@ -72,7 +72,7 @@ export default class AskQuestion extends Component {
     const valuesEntered = this.inputChecker();
     const tagsChecker = this.tagChecker();
 
-    if (valuesEntered.length === 3 && tagsChecker) {
+    if (valuesEntered.length === 2 && tagsChecker) {
       this.props.addQuestion(title, question, name, tags)
         .then((response) => {
           this.props.storedHistory.push(`/question/${response.id}`);
@@ -92,7 +92,8 @@ export default class AskQuestion extends Component {
   }
 
   render() {
-    const { title, question, tagText, tags, name } = this.state;
+    const { title, question, tagText, tags } = this.state;
+    const { user: { nickname, picture } } = this.props;
     const renderTags = this.renderTags();
 
     return (
@@ -106,17 +107,6 @@ export default class AskQuestion extends Component {
             name="title"
             value={ title }
             minLength="15"
-            maxLength="200"
-            onChange={ e => this.handleInput(e) }
-          />
-        </div>
-        <div className="user-name-wrapper">
-          <label>User</label>
-          <input
-            className="user-name-input"
-            placeholder="Enter your name"
-            name="name"
-            value={ name }
             maxLength="200"
             onChange={ e => this.handleInput(e) }
           />
@@ -145,7 +135,7 @@ export default class AskQuestion extends Component {
         <Button
           className="submit-question--btn"
           btnName="Submit Question"
-          handleClick={ () => this.postQuestion(title, question, name, tags) }
+          handleClick={ () => this.postQuestion(title, question, nickname, tags) }
         />
       </div>
     );
