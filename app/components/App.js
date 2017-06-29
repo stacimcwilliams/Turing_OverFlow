@@ -44,13 +44,20 @@ export default class App extends Component {
     return (
       <div>
         <NavBar auth={ auth } userLogout={ userLogout }/>
-        <Route exact path='/ask-question' component={ AskQuestionContainer }/>
+        <Route exact path='/ask-question' render={() => (
+          !auth.loggedIn() ? (auth.login()) : (<AskQuestionContainer />)
+        )}
+        />
         <Route exact path="/" render={ () => {
           return <DashboardContainer auth={ auth } />;
         }}
         />
         <Route path="/question/:id" render={ ({ match }) => {
-          return <QuestionDetailContainer id={ match.params.id } history={ history } />;
+          return <QuestionDetailContainer
+            id={ match.params.id }
+            history={ history }
+            auth={ auth }
+          />;
         }}
         />
         <Route exact path="/search/:searchTerm" render={ ({ match, location }) => {
