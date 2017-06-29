@@ -6,6 +6,7 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 import NavBar from './NavBar';
+import LogoutModal from './LogoutModal';
 import DashboardContainer from '../containers/DashboardContainer';
 import AskQuestionContainer from '../containers/AskQuestionContainer';
 import QuestionDetailContainer from '../containers/QuestionDetailContainer';
@@ -19,9 +20,14 @@ const auth = new Auth(config.CLIENT_ID, config.DOMAIN);
 export default class App extends Component {
   constructor() {
     super();
+    this.state = {
+      toggleModal: false,
+    };
     auth.on('userAdded', user => {
       this.storeUser(user);
     });
+    this.toggleModal = this.toggleModal.bind(this);
+    this.userLogout = this.userLogout.bind(this);
   }
 
   componentDidMount() {
@@ -39,11 +45,23 @@ export default class App extends Component {
     this.props.userLogin(user);
   }
 
+  toggleModal() {
+    const toggle = !this.state.toggleModal;
+    this.setState({ toggleModal: toggle });
+  }
+
+  userLogout() {
+    const { history, userLogout } = this.props;
+    history.push('/');
+    userLogout({});
+  }
+
   render() {
-    const { userLogout } = this.props;
+    const { toggleModal } = this.state;
+
     return (
       <div>
-        <NavBar auth={ auth } userLogout={ userLogout }/>
+        <NavBar auth={ auth } handleClick={ this.toggleModal }/>
         <Route exact path='/ask-question' render={() => (
           !auth.loggedIn() ? (auth.login()) : (<AskQuestionContainer />)
         )}
@@ -74,6 +92,13 @@ export default class App extends Component {
           />;
         }}
         />
+        { toggleModal &&
+          <LogoutModal
+            auth={ auth }
+            userLogout={ this.userLogout }
+            toggleModal={ this.toggleModal }
+          />
+        }
         <Alert
           stack={{ limit: 5 }}
           position="top"
