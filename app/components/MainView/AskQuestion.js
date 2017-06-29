@@ -10,7 +10,6 @@ export default class AskQuestion extends Component {
     super();
     this.state = {
       title: '',
-      name: '',
       question: '',
       tagText: '',
       tags: [],
