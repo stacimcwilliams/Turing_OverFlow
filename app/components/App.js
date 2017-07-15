@@ -37,7 +37,7 @@ export default class App extends Component {
     const userProfile = auth.getProfile();
     const token = auth.loggedIn();
 
-    token && (this.storeUser(userProfile, token));
+    token && this.storeUser(userProfile, token);
   }
 
   storeUser(userProfile, token) {
@@ -61,50 +61,68 @@ export default class App extends Component {
     const { user } = this.props;
     return (
       <div>
-        <NavBar auth={ auth } handleClick={ this.toggleModal }/>
-        <Route exact path='/ask-question' render={() => (
-          !auth.loggedIn() ? (auth.login()) : (<AskQuestionContainer />)
-        )}
+        <NavBar auth={auth} handleClick={this.toggleModal} />
+        <Route
+          exact
+          path="/ask-question"
+          render={() =>
+            !auth.loggedIn() ? auth.login() : <AskQuestionContainer />}
         />
-        <Route exact path="/" render={ () => {
-          return <DashboardContainer auth={ auth } />;
-        }}
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return <DashboardContainer auth={auth} />;
+          }}
         />
-        <Route path="/question/:id" render={ ({ match }) => {
-          return <QuestionDetailContainer
-            id={ match.params.id }
-            history={ history }
-            auth={ auth }
-          />;
-        }}
+        <Route
+          path="/question/:id"
+          render={({ match }) => {
+            return (
+              <QuestionDetailContainer
+                id={match.params.id}
+                history={history}
+                auth={auth}
+              />
+            );
+          }}
         />
-        <Route exact path="/search/:searchTerm" render={ ({ match, location }) => {
-          return <SearchResultsContainer
-            location={ location }
-            searchTermMatch={ match.params.searchTerm }
-          />;
-        }}
+        <Route
+          exact
+          path="/search/:searchTerm"
+          render={({ match, location }) => {
+            return (
+              <SearchResultsContainer
+                location={location}
+                searchTermMatch={match.params.searchTerm}
+              />
+            );
+          }}
         />
-        <Route exact path="/search/tag/:tag" render={ ({ match, location }) => {
-          return <SearchResultsContainer
-            location={ location }
-            searchTermMatch={ match.params.tag }
-          />;
-        }}
+        <Route
+          exact
+          path="/search/tag/:tag"
+          render={({ match, location }) => {
+            return (
+              <SearchResultsContainer
+                location={location}
+                searchTermMatch={match.params.tag}
+              />
+            );
+          }}
         />
-        { toggleModal &&
+        {toggleModal &&
           <LogoutModal
-            user={ user }
-            auth={ auth }
-            userLogout={ this.userLogout }
-            toggleModal={ this.toggleModal }
-          />
-        }
+            user={user}
+            auth={auth}
+            userLogout={this.userLogout}
+            toggleModal={this.toggleModal}
+          />}
         <Alert
           stack={{ limit: 5 }}
           position="top"
-          timeout={ 5000 }
-          effect='stackslide'
+          timeout={5000}
+          effect="stackslide"
         />
       </div>
     );
