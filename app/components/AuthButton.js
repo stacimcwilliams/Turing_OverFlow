@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AuthButton = ({ handleClick, className, name, btnName, auth }) => {
-  const handleAuth = (e) => {
+  const handleAuth = e => {
     if (!auth.loggedIn()) {
       auth.login();
     } else {
@@ -10,10 +10,11 @@ const AuthButton = ({ handleClick, className, name, btnName, auth }) => {
   };
   return (
     <button
-      className={ `btn ${className}` }
-      name={ name }
-      onClick={ (e) => handleAuth(e) }>
-      { btnName }
+      className={`btn ${className}`}
+      name={name}
+      onClick={e => handleAuth(e)}
+    >
+      {btnName}
     </button>
   );
 };
